@@ -28,4 +28,12 @@ public class UserController {
         return res;
     }
     
+    // 회원가입
+    @PostMapping(value="/join")
+    public ResponseDTO join(@RequestBody Map<String, Object> reqBody) {
+        ResponseDTO res = userService.join(reqBody);
+
+        return res;
+    }
+    
 }

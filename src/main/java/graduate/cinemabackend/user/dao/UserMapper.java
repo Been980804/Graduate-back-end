@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface UserMapper {
     // 로그인
     Map<String, String> selectUserInfo(Map<String, String> reqBody);
+    // 회원가입
+    int join(Map<String, Object> reqBody);
 }

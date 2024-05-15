@@ -11,4 +11,6 @@ public interface UserService {
     
     // 로그인
     ResponseDTO login(Map<String, String> reqBody);
+    // 회원가입
+    ResponseDTO join(Map<String, Object> reqBody);
 }
