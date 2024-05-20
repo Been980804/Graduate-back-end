@@ -33,4 +33,23 @@ public class MainServiceImpl implements MainService{
         }
         return res;
     }
+
+    @Override
+    @Transactional
+    public ResponseDTO getTheaterList() {
+        ResponseDTO res = new ResponseDTO();
+
+        List<Map<String, Object>> theaterList = mainMapper.getTheaterList();
+
+        if(theaterList != null){
+            res.setResCode(200);
+            res.setResMsg("극장리스트 불러오기 성공");
+            res.setData("theaterList", theaterList);
+        } else{
+            res.setResCode(300);
+            res.setResMsg("극장리스트 불러오기 실패");
+        }
+
+        return res;
+    }
 }

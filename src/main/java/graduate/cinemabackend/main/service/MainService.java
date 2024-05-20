@@ -8,4 +8,6 @@ import graduate.cinemabackend.common.dto.ResponseDTO;
 public interface MainService {
     // 영화목록 가져오기
     ResponseDTO getMovieList();
+    // 극장목록 가져오기
+    ResponseDTO getTheaterList();
 }

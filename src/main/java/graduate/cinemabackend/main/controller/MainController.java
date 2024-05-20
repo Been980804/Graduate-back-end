@@ -25,4 +25,11 @@ public class MainController {
         return res;
     }
     
+    // 극장목록 가져오기
+    @GetMapping(value="/theater")
+    public ResponseDTO getTheaterList(){
+        ResponseDTO res = mainService.getTheaterList();
+
+        return res;
+    }
 }

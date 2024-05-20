@@ -15,4 +15,12 @@
         ORDER BY mov_rank
         LIMIT 5
     </select>
+    <!-- 극장리스트 가져오기 -->
+    <select id="getTheaterList" resultType="Map">
+        SELECT
+            th_no, th_name, th_addr, th_phone, th_brand
+        FROM
+            theater
+        WHERE   use_flag = 'Y'
+    </select>
 </mapper>
