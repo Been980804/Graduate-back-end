@@ -21,6 +21,7 @@
             th_no, th_name, th_addr, th_phone, th_brand
         FROM
             theater
-        WHERE   use_flag = 'Y'
+        WHERE   
+            use_flag = 'Y'
     </select>
 </mapper>
