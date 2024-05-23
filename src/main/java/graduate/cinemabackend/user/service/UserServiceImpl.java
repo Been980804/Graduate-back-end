@@ -45,8 +45,8 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public ResponseDTO join(Map<String, Object> reqBody) {
+        ResponseDTO res = new ResponseDTO();
         try {
-            ResponseDTO res = new ResponseDTO();
             int result = userMapper.join(reqBody);
 
             if (result == 1) {
@@ -57,11 +57,10 @@ public class UserServiceImpl implements UserService {
                 res.setResMsg("회원가입 회원 정보 등록에 실패했습니다.");
             }
         } catch (DataIntegrityViolationException e) {
-            ResponseDTO res = new ResponseDTO();
             res.setResCode(500);
             res.setResMsg("이미 등록되어 있는 정보 입니다.");
-            return res;
+            
         }
-        return null;
+        return res;
     }
 }

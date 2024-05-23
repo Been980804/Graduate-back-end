@@ -4,17 +4,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="graduate.cinemabackend.main.dao.MainMapper">
-    <!-- 영화리스트 가져오기 -->
-    <select id="getMovieList" resultType="Map">
-        SELECT
-            mov_no, mov_posterURL
-        FROM
-            movie
-        WHERE
-            use_flag = 'Y'
-        ORDER BY mov_rank
-        LIMIT 5
-    </select>
+
     <!-- 극장리스트 가져오기 -->
     <select id="getTheaterList" resultType="Map">
         SELECT

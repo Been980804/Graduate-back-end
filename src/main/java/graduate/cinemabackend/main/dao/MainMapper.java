@@ -10,8 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MainMapper {
 
-    // 영화리스트 가져오기
-    List<Map<String, Object>> getMovieList();
     // 극장리스트 가져오기
     List<Map<String, Object>> getTheaterList();
 }

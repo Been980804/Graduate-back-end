@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="graduate.cinemabackend.common.dao.CommonMapper">
+    <select id="checkMovieExist" resultType="boolean">
+        SELECT
+            COUNT(1)
+        FROM
+            movie
+        WHERE
+            mov_title = #{mov_title}
+            and use_flag = 'Y'
+    </select>
+    
+    <update id="updateMovie" parameterType="Map">
+        UPDATE 
+            movie
+        SET
+            mov_rank = #{mov_rank},
+            mov_titleEng = #{mov_titleEng},
+            mov_director = #{mov_director},
+            mov_actor = #{mov_actor},
+            mov_date = #{mov_date},
+            mov_posterURL = #{mov_posterURL},
+            mov_state = #{mov_state},
+            mov_dday = #{mov_dday},
+            mov_nation = #{mov_nation},
+            mov_runtime = #{mov_runtime},
+            mov_intro = #{mov_intro},
+            mov_rating = #{mov_rating},
+            mov_genre = #{mov_genre},
+            mod_date = now()
+        WHERE
+            mov_title = #{mov_title}
+            and use_flag = 'Y'
+    </update>
+
+    <insert id="insertMovie" parameterType="Map">
+        INSERT INTO
+            movie(
+                mov_rank,
+                mov_title,
+                mov_titleEng,
+                mov_director,
+                mov_actor,
+                mov_date,
+                mov_posterURL,
+                mov_state,
+                mov_dday,
+                mov_nation,
+                mov_runtime,
+                mov_intro,
+                mov_rating,
+                mov_genre,
+                use_flag,
+                reg_date,
+                mod_date
+            ) VALUES(
+                #{mov_rank},
+                #{mov_title},
+                #{mov_titleEng},
+                #{mov_director},
+                #{mov_actor},
+                #{mov_date},
+                #{mov_posterURL},
+                #{mov_state},
+                #{mov_dday},
+                #{mov_nation},
+                #{mov_runtime},
+                #{mov_intro},
+                #{mov_rating},
+                #{mov_genre},
+                'Y',
+                now(),
+                now()
+            )
+    </insert>
+</mapper>

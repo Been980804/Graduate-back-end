@@ -16,14 +16,6 @@ public class MainController {
     
     @Autowired
     MainService mainService;
-
-    // 영화목록 가져오기
-    @GetMapping(value="/movieApi")
-    public ResponseDTO getMovieApi() {
-        ResponseDTO res = mainService.getMovieApi();
-
-        return res;
-    }
     
     // 극장목록 가져오기
     @GetMapping(value="/theater")
