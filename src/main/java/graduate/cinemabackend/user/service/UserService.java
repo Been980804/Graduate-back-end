@@ -13,4 +13,6 @@ public interface UserService {
     ResponseDTO login(Map<String, String> reqBody);
     // 회원가입
     ResponseDTO join(Map<String, Object> reqBody);
+    // 아이디 중복체크
+    ResponseDTO idCheck(String mem_id);
 }

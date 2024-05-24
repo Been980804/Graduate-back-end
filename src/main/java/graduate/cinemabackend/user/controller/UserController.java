@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import graduate.cinemabackend.common.dto.ResponseDTO;
 import graduate.cinemabackend.user.service.UserService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -34,6 +38,14 @@ public class UserController {
     @PostMapping(value="/join")
     public ResponseDTO join(@RequestBody Map<String, Object> reqBody) {
         ResponseDTO res = userService.join(reqBody);
+
+        return res;
+    }
+    
+    // 아이디 중복체크
+    @GetMapping(value="/idCheck/{mem_id}")
+    public ResponseDTO idCheck(@PathVariable("mem_id") String mem_id) {
+        ResponseDTO res = userService.idCheck(mem_id);
 
         return res;
     }

@@ -28,4 +28,14 @@
     )
         
   </insert>
+  <!-- 아이디 중복체크 -->
+  <select id="idCheck" parameterType="String" resultType="boolean">
+    SELECT
+      COUNT(1)
+    FROM
+      member
+    WHERE
+      use_flag = 'Y'
+      and mem_id = #{mem_id}
+  </select>
 </mapper>

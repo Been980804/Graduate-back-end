@@ -63,4 +63,22 @@ public class UserServiceImpl implements UserService {
         }
         return res;
     }
+
+    @Override
+    @Transactional
+    public ResponseDTO idCheck(String mem_id) {
+        ResponseDTO res = new ResponseDTO();
+
+        boolean isDuplicate = userMapper.idCheck(mem_id);
+
+        if(!isDuplicate){
+            res.setResCode(200);
+            res.setResMsg("사용가능한 아이디입니다.");
+        } else{
+            res.setResCode(300);
+            res.setResMsg("이미 사용중인 아이디입니다.");
+        }
+
+        return res;
+    }
 }

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import graduate.cinemabackend.common.dto.ResponseDTO;
 import graduate.cinemabackend.main.service.MainService;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
