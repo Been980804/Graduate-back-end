@@ -16,13 +16,30 @@
             mov_rank
         LIMIT 5
     </select>
-    <!-- 극장리스트 가져오기 -->
-    <select id="getTheaterList" resultType="Map">
+    <!-- 현재 상영중인 영화 리스트 가져오기 -->
+    <select id="screening" resultType="Map">
         SELECT
-            th_no, th_name, th_addr, th_phone, th_brand
+            mov_no, mov_posterURL
         FROM
-            theater
-        WHERE   
+            movie
+        WHERE
             use_flag = 'Y'
+            and mov_state = 1
+        ORDER BY
+            mov_rank
+        LIMIT 5
+    </select>
+    <!-- 상영예정작 리스트 가져오기 -->
+    <select id="toBeScreened" resultType="Map">
+        SELECT
+            mov_no, mov_posterURL, mov_dday
+        FROM
+            movie
+        WHERE
+            use_flag = 'Y'
+            and mov_state = 2
+        ORDER BY
+            mov_rank
+        LIMIT 5
     </select>
 </mapper>

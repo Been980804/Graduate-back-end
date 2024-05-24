@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import graduate.cinemabackend.common.dto.ResponseDTO;
 import graduate.cinemabackend.main.service.MainService;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -28,12 +30,20 @@ public class MainController {
         return res;
     }
     
-
-    // 극장목록 가져오기
-    @GetMapping(value="/theater")
-    public ResponseDTO getTheaterList(){
-        ResponseDTO res = mainService.getTheaterList();
+    // 현재상영중인 영화 
+    @GetMapping(value="/screening")
+    public ResponseDTO screening(){
+        ResponseDTO res = mainService.screening();
 
         return res;
     }
+
+    // 상영예정작
+    @GetMapping(value="/toBeScreened")
+    public ResponseDTO toBeScreened() {
+        ResponseDTO res = mainService.toBeScreened();
+
+        return res;
+    }
+    
 }

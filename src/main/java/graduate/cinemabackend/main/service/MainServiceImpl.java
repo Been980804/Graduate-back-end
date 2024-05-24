@@ -37,18 +37,36 @@ public class MainServiceImpl implements MainService {
 
     @Override
     @Transactional
-    public ResponseDTO getTheaterList() {
+    public ResponseDTO screening() {
         ResponseDTO res = new ResponseDTO();
 
-        List<Map<String, Object>> theaterList = mainMapper.getTheaterList();
+        List<Map<String, Object>> screeningList = mainMapper.screening();
 
-        if (!theaterList.isEmpty()) {
+        if(!screeningList.isEmpty()){
             res.setResCode(200);
-            res.setResMsg("극장리스트 불러오기 성공");
-            res.setData("theaterList", theaterList);
-        } else {
+            res.setResMsg("현재상영중인 영화 조회 성공");
+            res.setData("screeningList", screeningList);
+        } else{
             res.setResCode(300);
-            res.setResMsg("극장리스트 불러오기 실패");
+            res.setResMsg("현재상영중인 영화 조회 실패");
+        }
+        return res;
+    }
+
+    @Override
+    @Transactional
+    public ResponseDTO toBeScreened() {
+        ResponseDTO res = new ResponseDTO();
+
+        List<Map<String, Object>> toBeScreenedList = mainMapper.toBeScreened();
+
+        if(!toBeScreenedList.isEmpty()){
+            res.setResCode(200);
+            res.setResMsg("상영예정작 조회 성공");
+            res.setData("toBeScreenedList", toBeScreenedList);
+        } else{
+            res.setResCode(300);
+            res.setResMsg("상영예정작 조회 실패");
         }
 
         return res;

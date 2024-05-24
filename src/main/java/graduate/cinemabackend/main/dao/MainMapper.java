@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 public interface MainMapper {
     // 포스터URL 가져오기
     List<Map<String, Object>> getPosterURL();
-    // 극장리스트 가져오기
-    List<Map<String, Object>> getTheaterList();
+    // 현재상영중인 영화 가져오기
+    List<Map<String, Object>> screening();
+    // 상영예정작 가져오기
+    List<Map<String, Object>> toBeScreened();
 }
