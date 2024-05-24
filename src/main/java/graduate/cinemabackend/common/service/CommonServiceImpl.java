@@ -102,7 +102,7 @@ public class CommonServiceImpl implements CommonService {
                         Elements directors = detailInfo.getElementsByTag("dd");
                         for (Element director : directors) {
                             String directorNm = director.getElementsByTag("a").text();
-                            movieMap.put("mov_director", directorNm);
+                            movieMap.put("mov_director", directorNm);   // 감독명 구분을 위한 , 추가 
                             break;
                         }
 

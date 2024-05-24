@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="graduate.cinemabackend.detail.dao.DetailMapper">
+    <select id="getDetailInfo" parameterType="String" resultType="Map">
+        SELECT
+            mov_title, mov_titleEng, mov_director, mov_actor, mov_date, mov_posterURL,
+            mov_state, mov_dday, mov_nation, mov_runtime, mov_intro, mov_rating, mov_genre
+        FROM
+            movie
+        WHERE
+            use_flag = 'Y'
+            and mov_no = #{mov_no}
+    </select>
+</mapper>
