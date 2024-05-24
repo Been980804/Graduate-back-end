@@ -16,6 +16,24 @@ public class MainServiceImpl implements MainService {
     @Autowired
     MainMapper mainMapper;
 
+    @Override
+    @Transactional
+    public ResponseDTO getPosterURL() {
+        ResponseDTO res = new ResponseDTO();
+
+        List<Map<String, Object>> posterURLList = mainMapper.getPosterURL();
+
+        if(!posterURLList.isEmpty()){
+            res.setResCode(200);
+            res.setResMsg("배너 가져오기 성공");
+            res.setData("posterURLList", posterURLList);
+        }else{
+            res.setResCode(300);
+            res.setResMsg("배너 가져오기 실패");
+        }
+
+        return res;
+    }
 
     @Override
     @Transactional
@@ -24,7 +42,7 @@ public class MainServiceImpl implements MainService {
 
         List<Map<String, Object>> theaterList = mainMapper.getTheaterList();
 
-        if (theaterList != null) {
+        if (!theaterList.isEmpty()) {
             res.setResCode(200);
             res.setResMsg("극장리스트 불러오기 성공");
             res.setData("theaterList", theaterList);

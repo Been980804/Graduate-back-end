@@ -10,6 +10,7 @@ import graduate.cinemabackend.main.service.MainService;
 
 
 
+
 @RestController
 @RequestMapping("/main")
 public class MainController {
@@ -17,6 +18,15 @@ public class MainController {
     @Autowired
     MainService mainService;
     
+    // mov_no, mov_posterURL 받아오기
+    @GetMapping(value="/posterURL")
+    public ResponseDTO getPosterURL() {
+        ResponseDTO res = mainService.getPosterURL();
+
+        return res;
+    }
+    
+
     // 극장목록 가져오기
     @GetMapping(value="/theater")
     public ResponseDTO getTheaterList(){
