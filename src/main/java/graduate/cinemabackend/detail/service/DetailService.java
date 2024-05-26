@@ -8,4 +8,6 @@ import graduate.cinemabackend.common.dto.ResponseDTO;
 public interface DetailService {
     // 영화 상세정보 가져오기
     ResponseDTO getDetailInfo(String mov_no);
+    // 영화 리뷰 가져오기
+    ResponseDTO getReview(String mov_no);
 }

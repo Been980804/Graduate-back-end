@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import graduate.cinemabackend.common.dto.ResponseDTO;
 import graduate.cinemabackend.detail.service.DetailService;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -24,6 +26,14 @@ public class DetailController {
     @GetMapping(value="/getDetailInfo/{mov_no}")
     public ResponseDTO getDetailInfo(@PathVariable("mov_no") String mov_no) {
         ResponseDTO res = detailService.getDetailInfo(mov_no);
+
+        return res;
+    }
+    
+    // 영화 리뷰정보 가져오기
+    @GetMapping(value="/getReview/{mov_no}")
+    public ResponseDTO getReview(@PathVariable("mov_no") String mov_no) {
+        ResponseDTO res = detailService.getReview(mov_no);
 
         return res;
     }
