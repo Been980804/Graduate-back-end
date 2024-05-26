@@ -8,8 +8,8 @@
   <select id="selectUserInfo" parameterType="Map" resultType="Map">
     SELECT 
       mem_no, mem_name, mem_id, mem_pwd,
-      mem_phone, mem_birth, mem_email, mem_gender,
-      mem_rent_yn, mem_favorite, mem_class, reg_date, mod_date
+      mem_phone, mem_birth, mem_email, 
+      mem_class, use_flag, reg_date, mod_date
     FROM
       member
     WHERE   

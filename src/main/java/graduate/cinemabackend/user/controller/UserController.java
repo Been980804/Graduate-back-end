@@ -16,10 +16,10 @@ import graduate.cinemabackend.user.service.UserService;
 
 
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("/user")
-@CrossOrigin
+
 public class UserController {
     
     @Autowired

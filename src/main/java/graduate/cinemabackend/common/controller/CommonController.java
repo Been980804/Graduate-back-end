@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import graduate.cinemabackend.common.dto.ResponseDTO;
 import graduate.cinemabackend.common.service.CommonService;
 
-
-@RestController
 @CrossOrigin
+@RestController
 @RequestMapping("common")
 public class CommonController { //공통으로 처리할거
 
