@@ -53,4 +53,22 @@ public class DetailServiceImpl implements DetailService{
 
         return res;
     }
+
+    @Override
+    @Transactional
+    public ResponseDTO createReview(Map<String, Object> reqMap) {
+        ResponseDTO res =  new ResponseDTO();
+
+        int result = detailMapper.createReview(reqMap);
+
+        if(result == 1){
+            res.setResCode(200);
+            res.setResMsg("리뷰 작성 성공");
+        } else{
+            res.setResCode(300);
+            res.setResMsg("리뷰 작성 실패");
+        }
+
+        return res;
+    }
 }

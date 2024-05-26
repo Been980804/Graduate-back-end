@@ -1,5 +1,7 @@
 package graduate.cinemabackend.detail.service;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
 import graduate.cinemabackend.common.dto.ResponseDTO;
@@ -10,4 +12,6 @@ public interface DetailService {
     ResponseDTO getDetailInfo(String mov_no);
     // 영화 리뷰 가져오기
     ResponseDTO getReview(String mov_no);
+    // 영화 리뷰 작성
+    ResponseDTO createReview(Map<String, Object> reqMap);
 }

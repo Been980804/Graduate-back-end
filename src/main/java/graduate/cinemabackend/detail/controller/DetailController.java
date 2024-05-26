@@ -1,15 +1,19 @@
 package graduate.cinemabackend.detail.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import graduate.cinemabackend.common.dto.ResponseDTO;
 import graduate.cinemabackend.detail.service.DetailService;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -35,6 +39,14 @@ public class DetailController {
     public ResponseDTO getReview(@PathVariable("mov_no") String mov_no) {
         ResponseDTO res = detailService.getReview(mov_no);
 
+        return res;
+    }
+    
+    // 영화 리뷰작성
+    @PostMapping(value="/createReview")
+    public ResponseDTO createReview(@RequestBody Map<String, Object> reqMap) {
+        ResponseDTO res= detailService.createReview(reqMap);
+        
         return res;
     }
     

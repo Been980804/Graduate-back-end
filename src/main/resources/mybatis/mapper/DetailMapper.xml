@@ -30,4 +30,24 @@
         ORDER BY
             rev.reg_date DESC
     </select>
+    <!-- 리뷰 작성하기 -->
+    <insert id="createReview" parameterType="Map">
+        INSERT INTO review(
+            mem_no,
+            mov_no,
+            rev_rating,
+            rev_content,
+            use_flag,
+            reg_date,
+            mod_date
+        ) VALUES(
+            #{mem_no},
+            #{mov_no},
+            #{rev_rating},
+            #{rev_content},
+            'Y',
+            now(),
+            now()
+        )
+    </insert>
 </mapper>
