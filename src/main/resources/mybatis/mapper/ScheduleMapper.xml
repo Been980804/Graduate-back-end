@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="graduate.cinemabackend.schedule.dao.ScheduleMapper">
+    <select id="compare" parameterType="Map" resultType="Map">
+        SELECT 
+            th.th_name, h.hall_name, h.hall_seats, sch.sch_start, sch.sch_end
+        FROM 
+            schedule sch
+        JOIN 
+            hall h ON sch.hall_no = h.hall_no
+        JOIN 
+            theater th ON h.th_no = th.th_no
+        JOIN 
+            movie m ON sch.mov_no = m.mov_no
+        WHERE 
+            m.mov_no = #{mov_no}
+            and sch.sch_date = #{sch_date}
+            and th.th_region = #{th_region}
+            and sch.use_flag = 'Y'
+            and th.use_flag = 'Y'
+    </select>
+</mapper>
