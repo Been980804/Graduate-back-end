@@ -6,6 +6,6 @@ import graduate.cinemabackend.common.dto.ResponseDTO;
 
 @Service
 public interface CommonService {
-    
+    // 영화 db 크롤링
     ResponseDTO movieCrawling();
 }

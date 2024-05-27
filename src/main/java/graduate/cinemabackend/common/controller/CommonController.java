@@ -18,6 +18,7 @@ public class CommonController { //공통으로 처리할거
     CommonService commonService;
 
     @GetMapping("/crawling") // 크롤링으로 영화 정보 DB에 넣기
+    // @Scheduled(cron = "0 0 10 * * ?") // 매일 아침 10시에 자동으로 실행
     public ResponseDTO movieCrawling() {
        ResponseDTO res = commonService.movieCrawling();
 
