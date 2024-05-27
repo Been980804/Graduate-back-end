@@ -3,6 +3,7 @@ package graduate.cinemabackend.common.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +24,13 @@ public class CommonController { //공통으로 처리할거
        ResponseDTO res = commonService.movieCrawling();
 
        return res;
+    }
+    
+    @GetMapping("/search/{search}") // header 검색 기능
+    public ResponseDTO search(@PathVariable("search") String search) {
+        ResponseDTO res = commonService.search(search);
+
+        return res;
     }
     
 }

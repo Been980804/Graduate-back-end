@@ -77,4 +77,18 @@
                 now()
             )
     </insert>
+    <!-- 영화 검색 -->
+    <select id="search" parameterType="String" resultType="Map">
+        SELECT
+            mov_no, mov_posterURL
+        FROM
+            movie
+        WHERE
+            use_flag = 'Y'
+            <if test="search != null">
+                and mov_title like concat('%', #{search}, '%')
+            </if>
+        ORDER BY
+            mov_rank
+    </select>
 </mapper>

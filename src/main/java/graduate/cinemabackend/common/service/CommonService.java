@@ -8,4 +8,6 @@ import graduate.cinemabackend.common.dto.ResponseDTO;
 public interface CommonService {
     // 영화 db 크롤링
     ResponseDTO movieCrawling();
+    //  Header 검색기능
+    ResponseDTO search(String search);
 }

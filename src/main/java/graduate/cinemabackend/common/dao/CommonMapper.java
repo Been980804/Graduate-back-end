@@ -1,6 +1,7 @@
 package graduate.cinemabackend.common.dao;
 
 import java.util.Map;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -15,4 +16,6 @@ public interface CommonMapper {
     void updateMovie(Map<String, Object> movieMap);
     // DB에 없을시 : insert
     void insertMovie(Map<String, Object> movieMap);
+    // 영화 검색
+    List<Map<String, Object>> search(String search);
 }

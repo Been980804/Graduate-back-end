@@ -172,4 +172,23 @@ public class CommonServiceImpl implements CommonService {
             return res;
         }
     }
+
+    @Override
+    @Transactional
+    public ResponseDTO search(String search) {
+        ResponseDTO res = new ResponseDTO();
+
+        List<Map<String, Object>> searchList = commonMapper.search(search);
+        
+        if(!searchList.isEmpty()){
+            res.setResCode(200);
+            res.setResMsg("검색 성공");
+            res.setData("searchList", searchList);
+        } else{
+            res.setResCode(300);
+            res.setResMsg("검색 실패");
+        }
+
+        return res;
+    }
 }
