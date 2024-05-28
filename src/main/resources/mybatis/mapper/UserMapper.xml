@@ -9,12 +9,11 @@
     SELECT 
       mem_no, mem_name, mem_id, mem_pwd,
       mem_phone, mem_birth, mem_email, 
-      mem_class, use_flag, reg_date, mod_date
+      mem_class
     FROM
       member
-    WHERE   
-      1=1
-      AND mem_id = #{mem_id}
+    WHERE
+      mem_id = #{mem_id}
       AND use_flag = 'Y'
   </select>
   <!-- 회원가입 -->

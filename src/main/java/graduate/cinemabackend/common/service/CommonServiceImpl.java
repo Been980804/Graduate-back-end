@@ -175,7 +175,7 @@ public class CommonServiceImpl implements CommonService {
 
     @Override
     @Transactional
-    public ResponseDTO search(String search) {
+    public ResponseDTO search(String search) { // Header 검색
         ResponseDTO res = new ResponseDTO();
 
         List<Map<String, Object>> searchList = commonMapper.search(search);
