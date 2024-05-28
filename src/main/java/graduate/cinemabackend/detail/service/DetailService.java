@@ -14,4 +14,6 @@ public interface DetailService {
     ResponseDTO getReview(String mov_no);
     // 영화 리뷰 작성
     ResponseDTO createReview(Map<String, Object> reqMap);
+    // 영화 좋아요
+    ResponseDTO likeMovie(Map<String, Object> reqMap);
 }

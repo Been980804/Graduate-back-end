@@ -15,4 +15,11 @@ public interface DetailMapper {
     List<Map<String, Object>> getReview(String mov_no);
     // 리뷰 작성
     int createReview(Map<String, Object> reqMap);
+    // 좋아요 유무체크
+    boolean checkLike(Map<String, Object> reqMap);
+    // 좋아요 취소
+    int deleteLike(Map<String, Object> reqMap);
+    // 좋아요 삽입
+    int insertLike(Map<String, Object> reqMap);
+
 }

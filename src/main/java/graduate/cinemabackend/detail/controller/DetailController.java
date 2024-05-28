@@ -44,8 +44,16 @@ public class DetailController {
     
     // 영화 리뷰작성
     @PostMapping(value="/createReview")
-    public ResponseDTO createReview(@RequestBody Map<String, Object> reqMap) {
+    public ResponseDTO createReview(@RequestBody Map<String, Object> reqMap) { // mov_no, mem_no
         ResponseDTO res= detailService.createReview(reqMap);
+        
+        return res;
+    }
+    
+    // 영화 좋아요
+    @PostMapping(value="/likeMovie")
+    public ResponseDTO likeMovie(@RequestBody Map<String, Object> reqMap) { // mov_no, mem_no
+        ResponseDTO res = detailService.likeMovie(reqMap);
         
         return res;
     }

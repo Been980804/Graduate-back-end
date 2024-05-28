@@ -37,17 +37,45 @@
             mov_no,
             rev_rating,
             rev_content,
-            use_flag,
-            reg_date,
-            mod_date
+            reg_date,          
         ) VALUES(
             #{mem_no},
             #{mov_no},
             #{rev_rating},
             #{rev_content},
-            'Y',
-            now(),
             now()
         )
+    </insert>
+    <!-- 좋아요 유무 체크 -->
+    <select id="checkLike" parameterType="Map" resultType="boolean">
+        SELECT
+            COUNT(1)
+        FROM
+            like_movie
+        WHERE
+            mem_no = #{mem_no}
+            and mov_no = #{mov_no}
+            and use_flag = 'Y'
+    </select>
+    <!-- 좋아요 삭제 -->
+    <delete id="deleteLike" parameterType="Map">
+        DELETE FROM
+            like_movie
+        WHERE
+            mem_no = #{mem_no}
+            and mov_no = #{mov_no}
+    </delete>
+    <!-- 좋아요 삽입 -->
+    <insert id="insertLike" parameterType="Map">
+        INSERT INTO
+            like_movie(
+                mem_no,
+                mov_no,
+                reg_date
+            ) VALUES(
+                #{mem_no},
+                #{mov_no},
+                now()
+            )
     </insert>
 </mapper>

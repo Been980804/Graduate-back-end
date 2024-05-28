@@ -71,4 +71,37 @@ public class DetailServiceImpl implements DetailService{
 
         return res;
     }
+
+    @Override
+    @Transactional
+    public ResponseDTO likeMovie(Map<String, Object> reqMap) {
+        ResponseDTO res = new ResponseDTO();
+
+        // 선호 영화 테이블에 유무 확인
+        boolean result = detailMapper.checkLike(reqMap);
+        
+        if(result){
+            int deleteRow = detailMapper.deleteLike(reqMap);
+
+            if(deleteRow > 0){
+                res.setResCode(200);
+                res.setResMsg("좋아요 취소 성공");
+            } else{
+                res.setResCode(300);
+                res.setResMsg("좋아요 취소 실패");
+            }
+        }  else{
+            int insertRow = detailMapper.insertLike(reqMap);
+
+            if(insertRow > 0){
+                res.setResCode(200);
+                res.setResMsg("좋아요 삽입 성공");
+            } else{
+                res.setResCode(300);
+                res.setResMsg("좋아요 삽입 실패");
+            }
+        }
+
+        return res;        
+    }
 }
