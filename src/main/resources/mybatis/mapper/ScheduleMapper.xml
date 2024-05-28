@@ -21,5 +21,9 @@
             and th.th_region = #{th_region}
             and sch.use_flag = 'Y'
             and th.use_flag = 'Y'
+        ORDER BY
+            th.th_brand asc,
+            <!-- 관 순서대로 -->
+            CAST(SUBSTRING_INDEX(h.hall_name, '관', 1) AS UNSIGNED) ASC 
     </select>
 </mapper>
