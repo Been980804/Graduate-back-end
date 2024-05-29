@@ -1,7 +1,6 @@
 package graduate.cinemabackend.common.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import graduate.cinemabackend.common.dto.ResponseDTO;
 import graduate.cinemabackend.common.service.CommonService;
 
-@CrossOrigin
 @RestController
 @RequestMapping("common")
 public class CommonController { //공통으로 처리할거

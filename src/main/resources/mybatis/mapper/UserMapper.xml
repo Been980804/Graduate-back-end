@@ -7,9 +7,7 @@
     <!-- 로그인 -->
   <select id="selectUserInfo" parameterType="Map" resultType="Map">
     SELECT 
-      mem_no, mem_name, mem_id, mem_pwd,
-      mem_phone, mem_birth, mem_email, 
-      mem_class
+      mem_name, mem_id, mem_pwd, mem_class
     FROM
       member
     WHERE
