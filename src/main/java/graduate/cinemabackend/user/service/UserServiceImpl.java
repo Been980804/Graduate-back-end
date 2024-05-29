@@ -216,6 +216,15 @@ public class UserServiceImpl implements UserService {
 
             if (!getMemNo.isEmpty()) {
                 List<Map<String, Object>> likeMovieList = userMapper.likeMovie(getMemNo);
+
+                if(!likeMovieList.isEmpty()){
+                    res.setResCode(200);
+                    res.setResMsg("선호 영화 리스트 조회 성공");
+                    res.setData("likeMovieList", likeMovieList);
+                } else{
+                    res.setResCode(300);
+                    res.setResMsg("선호 영화 리스트 조회 실패");
+                }
             } else{
                 res.setResCode(300);
                 res.setResMsg("Don't exist");
