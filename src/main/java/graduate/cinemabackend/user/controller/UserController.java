@@ -15,6 +15,7 @@ import graduate.cinemabackend.user.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 
 
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -31,9 +32,9 @@ public class UserController {
     }
     
     // 회원가입
-    @PostMapping(value="/join")
-    public ResponseDTO join(@RequestBody Map<String, Object> reqBody) {
-        ResponseDTO res = userService.join(reqBody);
+    @PostMapping(value="/signup")
+    public ResponseDTO signup(@RequestBody Map<String, Object> reqBody) {
+        ResponseDTO res = userService.signup(reqBody);
 
         return res;
     }
@@ -62,4 +63,13 @@ public class UserController {
 
         return res;
     }
+
+    // 회원정보 조회
+    @GetMapping(value="/userInfo")
+    public ResponseDTO userInfo(HttpServletRequest httpServletRequest) {
+        ResponseDTO res = userService.userInfo(httpServletRequest);
+
+        return res;
+    }
+    
 }

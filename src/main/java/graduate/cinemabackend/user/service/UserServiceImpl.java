@@ -52,10 +52,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public ResponseDTO join(Map<String, Object> reqBody) { // 회원가입
+    public ResponseDTO signup(Map<String, Object> reqBody) { // 회원가입
         ResponseDTO res = new ResponseDTO();
         try {
-            int result = userMapper.join(reqBody);
+            int result = userMapper.signup(reqBody);
 
             if (result == 1) {
                 res.setResCode(200);
@@ -119,8 +119,31 @@ public class UserServiceImpl implements UserService {
         }
         return res;
     }
+    // 회원정보 조회
+    @Override
+    @Transactional
+    public ResponseDTO userInfo(HttpServletRequest httpServletRequest) {
+        ResponseDTO res = new ResponseDTO();
 
+        HttpSession session = httpServletRequest.getSession(false);
+        if(session != null){
+            String mem_id = (String)session.getAttribute("mem_id");
+            Map<String, Object> userInfo = userMapper.userInfo(mem_id);
 
+            if(!userInfo.isEmpty()){
+                res.setResCode(200);
+                res.setResMsg("회원정보 조회 성공");
+                res.setData("userInfo", userInfo);
+            } else{ 
+                res.setResCode(300);
+                res.setResMsg("회원정보 조회 실패");
+            }
+        } else{
+            res.setResCode(300);
+            res.setResMsg("로그인 후 이용해 주세요.");
+        }      
+        return res;
+    }
 }
 
 

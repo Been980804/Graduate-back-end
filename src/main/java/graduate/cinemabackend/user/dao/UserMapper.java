@@ -11,7 +11,9 @@ public interface UserMapper {
     // 로그인
     Map<String, String> selectUserInfo(Map<String, String> reqBody);
     // 회원가입
-    int join(Map<String, Object> reqBody);
+    int signup(Map<String, Object> reqBody);
     // 아이디 중복체크
     boolean idCheck(String mem_id);
+    // 회원정보 조회
+    Map<String, Object> userInfo(String mem_id);
 }

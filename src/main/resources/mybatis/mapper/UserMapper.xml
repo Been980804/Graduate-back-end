@@ -15,7 +15,7 @@
       AND use_flag = 'Y'
   </select>
   <!-- 회원가입 -->
-  <insert id="join" parameterType="Map">
+  <insert id="signup" parameterType="Map">
     INSERT INTO
         member(
             mem_name, mem_id, mem_pwd, mem_phone, mem_birth, mem_email, reg_date,
@@ -29,6 +29,16 @@
   <select id="idCheck" parameterType="String" resultType="boolean">
     SELECT
       COUNT(1)
+    FROM
+      member
+    WHERE
+      use_flag = 'Y'
+      and mem_id = #{mem_id}
+  </select>
+  <!-- 회원정보 조회 -->
+  <select id="userInfo" parameterType="String" resultType="Map">
+    SELECT
+      mem_name, mem_id, mem_phone, mem_birth, mem_email
     FROM
       member
     WHERE
