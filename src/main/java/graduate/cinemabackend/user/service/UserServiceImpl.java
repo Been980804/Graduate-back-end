@@ -2,6 +2,8 @@ package graduate.cinemabackend.user.service;
 
 import java.util.Map;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -12,13 +14,12 @@ import graduate.cinemabackend.user.dao.UserMapper;
 
 @Service
 public class UserServiceImpl implements UserService {
-
     @Autowired
     UserMapper userMapper;
 
     @Override
     @Transactional
-    public ResponseDTO login(Map<String, String> reqBody) {
+    public ResponseDTO login(Map<String, String> reqBody, HttpServletRequest httpServletRequest) {
         ResponseDTO res = new ResponseDTO();
 
         Map<String, String> resMap = userMapper.selectUserInfo(reqBody);
@@ -29,8 +30,15 @@ public class UserServiceImpl implements UserService {
             if (pwd.equals(resMap.get("mem_pwd"))) {
                 res.setResCode(200);
                 res.setResMsg("Login Success");
-                res.setData("userInfo", resMap);
-                resMap.remove("mem_pwd");
+                // 수정 시작한 부분
+                // 세션 삭제
+                httpServletRequest.getSession().invalidate();
+                // 세션 초기화 및 Attr 설정
+                HttpSession session = httpServletRequest.getSession();
+                session.setMaxInactiveInterval(1800);
+                session.setAttribute("mem_name", resMap.get("mem_name"));
+                session.setAttribute("mem_id", resMap.get("mem_id"));
+                session.setAttribute("mem_class", resMap.get("mem_class"));
             } else {
                 res.setResCode(300);
                 res.setResMsg("ID 또는 PW가 일치하지 않습니다.");
@@ -44,7 +52,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public ResponseDTO join(Map<String, Object> reqBody) {
+    public ResponseDTO join(Map<String, Object> reqBody) { // 회원가입
         ResponseDTO res = new ResponseDTO();
         try {
             int result = userMapper.join(reqBody);
@@ -66,7 +74,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public ResponseDTO idCheck(String mem_id) {
+    public ResponseDTO idCheck(String mem_id) { // id중복체크
         ResponseDTO res = new ResponseDTO();
 
         boolean isDuplicate = userMapper.idCheck(mem_id);
@@ -81,4 +89,38 @@ public class UserServiceImpl implements UserService {
 
         return res;
     }
+    // 로그아웃 관련 코드
+    @Override
+    @Transactional
+    public ResponseDTO logout(HttpServletRequest httpServletRequest) {
+        ResponseDTO res = new ResponseDTO();
+
+        httpServletRequest.getSession().invalidate();
+        res.setResCode(200);
+        res.setResMsg("logout successful");
+
+        return  res;
+
+    }
+    // 로그인 여부 확인
+    public ResponseDTO auth(HttpServletRequest httpServletRequest) {
+        ResponseDTO res = new ResponseDTO();
+
+        HttpSession session = httpServletRequest.getSession(false);
+        if (session == null) {
+            res.setResCode(300);
+            res.setResMsg("can't find user");
+        } else {
+            res.setResCode(200);
+            res.setResMsg("Welcome User");
+            res.setData("mem_name", session.getAttribute("mem_name"));
+            res.setData("mem_class", session.getAttribute("mem_class"));
+            res.setData("mem_id", session.getAttribute("mem_id"));
+        }
+        return res;
+    }
+
+
 }
+
+

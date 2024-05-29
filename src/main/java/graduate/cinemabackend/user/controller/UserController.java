@@ -2,6 +2,8 @@ package graduate.cinemabackend.user.controller;
 
 import java.util.Map;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,19 +18,19 @@ import graduate.cinemabackend.user.service.UserService;
 
 
 
-@CrossOrigin
+
 @RestController
 @RequestMapping("/user")
 
 public class UserController {
-    
+
     @Autowired
     UserService userService;
 
     // 로그인
     @PostMapping(value="/login")
-    public ResponseDTO login(@RequestBody Map<String, String> reqBody) {
-        ResponseDTO res = userService.login(reqBody);
+    public ResponseDTO login(@RequestBody Map<String, String> reqBody, HttpServletRequest httpServletRequest) {
+        ResponseDTO res = userService.login(reqBody, httpServletRequest);
         
         return res;
     }
@@ -48,5 +50,21 @@ public class UserController {
 
         return res;
     }
-    
+
+    // logout
+    @PostMapping(value = "/logout")
+    public ResponseDTO logout(HttpServletRequest httpServletRequest) {
+        ResponseDTO res = userService.logout(httpServletRequest);
+
+        return res;
+
+    }
+
+    // authCheck
+    @GetMapping(value = "/auth")
+    public ResponseDTO auth(HttpServletRequest httpServletRequest) {
+        ResponseDTO res = userService.auth(httpServletRequest);
+
+        return res;
+    }
 }
