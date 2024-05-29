@@ -26,4 +26,6 @@ public interface UserService {
     ResponseDTO modifyUserInfo(Map<String, Object> reqMap, HttpServletRequest httpServletRequest);
     // 회원탈퇴
     ResponseDTO deleteAccount(HttpServletRequest httpServletRequest);
+    // 선호 영화 조회
+    ResponseDTO likeMovie(HttpServletRequest httpServletRequest);
 }

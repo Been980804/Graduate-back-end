@@ -1,5 +1,6 @@
 package graduate.cinemabackend.user.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -20,4 +21,8 @@ public interface UserMapper {
     int modifyUserInfo(Map<String, Object> reqMap);
     // 회원탈퇴
     int deleteAccount(String mem_id);
+    // mem_no 얻기
+    Map<String, Object> getMemNo(String mem_id);
+    // 선호 영화 조회
+    List<Map<String, Object>> likeMovie(Map<String, Object> getMemNo);
 }

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import graduate.cinemabackend.common.dto.ResponseDTO;
 import graduate.cinemabackend.user.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -85,6 +87,13 @@ public class UserController {
     @PostMapping(value="/deleteAccount")
     public ResponseDTO postMethodName(HttpServletRequest httpServletRequest) {
         ResponseDTO res = userService.deleteAccount(httpServletRequest);
+
+        return res;
+    }
+    // 선호 영화 리스트 가져오기 -> 추후 페이징 처리
+    @GetMapping(value="likeMovie")
+    public ResponseDTO likeMovie(HttpServletRequest httpServletRequest) {
+        ResponseDTO res = userService.likeMovie(httpServletRequest);
 
         return res;
     }

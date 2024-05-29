@@ -1,9 +1,8 @@
 package graduate.cinemabackend.user.service;
 
+import java.util.List;
 import java.util.Map;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -11,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import graduate.cinemabackend.common.dto.ResponseDTO;
 import graduate.cinemabackend.user.dao.UserMapper;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -186,7 +187,7 @@ public class UserServiceImpl implements UserService {
 
             int deleteRow = userMapper.deleteAccount(mem_id);
 
-            if(deleteRow > 0){
+            if (deleteRow > 0) {
                 httpServletRequest.getSession().invalidate();
                 res.setResCode(200);
                 res.setResMsg("회원 탈퇴 성공");
@@ -194,6 +195,32 @@ public class UserServiceImpl implements UserService {
                 res.setResCode(300);
                 res.setResMsg("회원 탈퇴 실패");
             }
+        } else {
+            res.setResCode(300);
+            res.setResMsg("로그인 후 이용해 주세요.");
+        }
+        return res;
+    }
+
+    // 선호 영화 조회
+    @Override
+    @Transactional
+    public ResponseDTO likeMovie(HttpServletRequest httpServletRequest) {
+        ResponseDTO res = new ResponseDTO();
+
+        HttpSession session = httpServletRequest.getSession(false);
+        if (session != null) {
+            String mem_id = (String) session.getAttribute("mem_id"); // 현재 아이디
+
+            Map<String, Object> getMemNo = userMapper.getMemNo(mem_id);
+
+            if (!getMemNo.isEmpty()) {
+                List<Map<String, Object>> likeMovieList = userMapper.likeMovie(getMemNo);
+            } else{
+                res.setResCode(300);
+                res.setResMsg("Don't exist");
+            }
+
         } else {
             res.setResCode(300);
             res.setResMsg("로그인 후 이용해 주세요.");

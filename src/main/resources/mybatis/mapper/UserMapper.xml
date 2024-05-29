@@ -70,4 +70,26 @@
     WHERE
       mem_id = #{mem_id}
   </update>
+  <!-- mem_no 얻기 -->
+  <select id="getMemNo" parameterType="String" resultType="Map">
+    SELECT
+      mem_no
+    FROM
+      member
+    WHERE
+      use_flag = 'Y'
+      and mem_id = #{mem_id}
+  </select>
+  <!-- 선호 영화 조회 -->
+  <select id="likeMovie" parameterType="Map" resultType="Map">
+    SELECT
+      lm.mov_no, mov.mov_posterURL, mov.mov_title
+    FROM
+      like_movie lm
+    JOIN
+      movie mov ON mov.mov_no = lm.mov_no
+    WHERE
+      use_flag = 'Y'
+      and mem_no = #{mem_no}
+  </select>
 </mapper>
