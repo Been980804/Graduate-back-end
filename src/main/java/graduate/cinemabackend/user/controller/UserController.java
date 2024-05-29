@@ -81,4 +81,12 @@ public class UserController {
         return res;
     }
     
+    // 회원탈퇴
+    @PostMapping(value="/deleteAccount")
+    public ResponseDTO postMethodName(HttpServletRequest httpServletRequest) {
+        ResponseDTO res = userService.deleteAccount(httpServletRequest);
+
+        return res;
+    }
+    
 }

@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
         } catch (DataIntegrityViolationException e) {
             res.setResCode(500);
             res.setResMsg("이미 등록되어 있는 정보 입니다.");
-            
+
         }
         return res;
     }
@@ -79,16 +79,17 @@ public class UserServiceImpl implements UserService {
 
         boolean isDuplicate = userMapper.idCheck(mem_id);
 
-        if(!isDuplicate){
+        if (!isDuplicate) {
             res.setResCode(200);
             res.setResMsg("사용가능한 아이디입니다.");
-        } else{
+        } else {
             res.setResCode(300);
             res.setResMsg("이미 사용중인 아이디입니다.");
         }
 
         return res;
     }
+
     // 로그아웃 관련 코드
     @Override
     @Transactional
@@ -99,9 +100,10 @@ public class UserServiceImpl implements UserService {
         res.setResCode(200);
         res.setResMsg("logout successful");
 
-        return  res;
+        return res;
 
     }
+
     // 로그인 여부 확인
     public ResponseDTO auth(HttpServletRequest httpServletRequest) {
         ResponseDTO res = new ResponseDTO();
@@ -119,6 +121,7 @@ public class UserServiceImpl implements UserService {
         }
         return res;
     }
+
     // 회원정보 조회
     @Override
     @Transactional
@@ -126,22 +129,22 @@ public class UserServiceImpl implements UserService {
         ResponseDTO res = new ResponseDTO();
 
         HttpSession session = httpServletRequest.getSession(false);
-        if(session != null){
-            String mem_id = (String)session.getAttribute("mem_id");
+        if (session != null) {
+            String mem_id = (String) session.getAttribute("mem_id");
             Map<String, Object> userInfo = userMapper.userInfo(mem_id);
 
-            if(!userInfo.isEmpty()){
+            if (!userInfo.isEmpty()) {
                 res.setResCode(200);
                 res.setResMsg("회원정보 조회 성공");
                 res.setData("userInfo", userInfo);
-            } else{ 
+            } else {
                 res.setResCode(300);
                 res.setResMsg("회원정보 조회 실패");
             }
-        } else{
+        } else {
             res.setResCode(300);
             res.setResMsg("로그인 후 이용해 주세요.");
-        }      
+        }
         return res;
     }
 
@@ -151,26 +154,50 @@ public class UserServiceImpl implements UserService {
         ResponseDTO res = new ResponseDTO();
 
         HttpSession session = httpServletRequest.getSession(false);
-        if(session != null){
-            String now_id = (String)session.getAttribute("mem_id"); // 현재 아이디
+        if (session != null) {
+            String now_id = (String) session.getAttribute("mem_id"); // 현재 아이디
 
             reqMap.put("now_id", now_id);
 
             int updateRow = userMapper.modifyUserInfo(reqMap);
-            
-            if(updateRow > 0){
+
+            if (updateRow > 0) {
                 res.setResCode(200);
                 res.setResMsg("회원정보 수정 성공");
-            } else{
+            } else {
                 res.setResCode(300);
                 res.setResMsg("회원정보 수정 실패");
             }
-        } else{
+        } else {
+            res.setResCode(300);
+            res.setResMsg("로그인 후 이용해 주세요.");
+        }
+        return res;
+    }
+
+    @Override
+    @Transactional
+    public ResponseDTO deleteAccount(HttpServletRequest httpServletRequest) {
+        ResponseDTO res = new ResponseDTO();
+
+        HttpSession session = httpServletRequest.getSession(false);
+        if (session != null) {
+            String mem_id = (String) session.getAttribute("mem_id"); // 현재 아이디
+
+            int deleteRow = userMapper.deleteAccount(mem_id);
+
+            if(deleteRow > 0){
+                httpServletRequest.getSession().invalidate();
+                res.setResCode(200);
+                res.setResMsg("회원 탈퇴 성공");
+            } else {
+                res.setResCode(300);
+                res.setResMsg("회원 탈퇴 실패");
+            }
+        } else {
             res.setResCode(300);
             res.setResMsg("로그인 후 이용해 주세요.");
         }
         return res;
     }
 }
-
-

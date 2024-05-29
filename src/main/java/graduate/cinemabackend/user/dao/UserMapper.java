@@ -18,4 +18,6 @@ public interface UserMapper {
     Map<String, Object> userInfo(String mem_id);
     // 회원정보 수정
     int modifyUserInfo(Map<String, Object> reqMap);
+    // 회원탈퇴
+    int deleteAccount(String mem_id);
 }

@@ -60,4 +60,14 @@
       use_flag = 'Y'
       and mem_id = #{now_id}
   </update>
+  <!-- 회원탈퇴 -->
+  <update id="deleteAccount" parameterType="String">
+    UPDATE
+      member
+    SET
+      use_flag = 'N',
+      mod_date = now()
+    WHERE
+      mem_id = #{mem_id}
+  </update>
 </mapper>

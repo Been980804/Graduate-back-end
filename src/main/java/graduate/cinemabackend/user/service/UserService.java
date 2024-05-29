@@ -24,4 +24,6 @@ public interface UserService {
     ResponseDTO userInfo(HttpServletRequest httpServletRequest);
     // 회원정보 수정
     ResponseDTO modifyUserInfo(Map<String, Object> reqMap, HttpServletRequest httpServletRequest);
+    // 회원탈퇴
+    ResponseDTO deleteAccount(HttpServletRequest httpServletRequest);
 }
