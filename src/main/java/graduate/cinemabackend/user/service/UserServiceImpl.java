@@ -19,13 +19,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public ResponseDTO login(Map<String, String> reqBody, HttpServletRequest httpServletRequest) {
+    public ResponseDTO login(Map<String, String> reqMap, HttpServletRequest httpServletRequest) {
         ResponseDTO res = new ResponseDTO();
 
-        Map<String, String> resMap = userMapper.selectUserInfo(reqBody);
+        Map<String, String> resMap = userMapper.selectUserInfo(reqMap);
 
         if (resMap != null) {
-            String pwd = reqBody.get("pwd");
+            String pwd = reqMap.get("pwd");
 
             if (pwd.equals(resMap.get("mem_pwd"))) {
                 res.setResCode(200);
@@ -52,10 +52,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public ResponseDTO signup(Map<String, Object> reqBody) { // 회원가입
+    public ResponseDTO signup(Map<String, Object> reqMap) { // 회원가입
         ResponseDTO res = new ResponseDTO();
         try {
-            int result = userMapper.signup(reqBody);
+            int result = userMapper.signup(reqMap);
 
             if (result == 1) {
                 res.setResCode(200);
@@ -142,6 +142,33 @@ public class UserServiceImpl implements UserService {
             res.setResCode(300);
             res.setResMsg("로그인 후 이용해 주세요.");
         }      
+        return res;
+    }
+
+    @Override
+    @Transactional
+    public ResponseDTO modifyUserInfo(Map<String, Object> reqMap, HttpServletRequest httpServletRequest) {
+        ResponseDTO res = new ResponseDTO();
+
+        HttpSession session = httpServletRequest.getSession(false);
+        if(session != null){
+            String now_id = (String)session.getAttribute("mem_id"); // 현재 아이디
+
+            reqMap.put("now_id", now_id);
+
+            int updateRow = userMapper.modifyUserInfo(reqMap);
+            
+            if(updateRow > 0){
+                res.setResCode(200);
+                res.setResMsg("회원정보 수정 성공");
+            } else{
+                res.setResCode(300);
+                res.setResMsg("회원정보 수정 실패");
+            }
+        } else{
+            res.setResCode(300);
+            res.setResMsg("로그인 후 이용해 주세요.");
+        }
         return res;
     }
 }

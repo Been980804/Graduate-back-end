@@ -45,4 +45,19 @@
       use_flag = 'Y'
       and mem_id = #{mem_id}
   </select>
+  <!-- 회원정보 수정 -->
+  <update id="modifyUserInfo" parameterType="Map">
+    UPDATE
+      member
+    SET
+      mem_name = #{mem_name},
+      mem_id = #{mem_id},
+      mem_phone = #{mem_phone},
+      mem_birth = #{mem_birth},
+      mem_email = #{mem_email},
+      mod_date = now()
+    WHERE
+      use_flag = 'Y'
+      and mem_id = #{now_id}
+  </update>
 </mapper>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,16 +26,16 @@ public class UserController {
 
     // 로그인
     @PostMapping(value="/login")
-    public ResponseDTO login(@RequestBody Map<String, String> reqBody, HttpServletRequest httpServletRequest) {
-        ResponseDTO res = userService.login(reqBody, httpServletRequest);
+    public ResponseDTO login(@RequestBody Map<String, String> reqMap, HttpServletRequest httpServletRequest) {
+        ResponseDTO res = userService.login(reqMap, httpServletRequest);
         
         return res;
     }
     
     // 회원가입
     @PostMapping(value="/signup")
-    public ResponseDTO signup(@RequestBody Map<String, Object> reqBody) {
-        ResponseDTO res = userService.signup(reqBody);
+    public ResponseDTO signup(@RequestBody Map<String, Object> reqMap) {
+        ResponseDTO res = userService.signup(reqMap);
 
         return res;
     }
@@ -69,6 +70,14 @@ public class UserController {
     public ResponseDTO userInfo(HttpServletRequest httpServletRequest) {
         ResponseDTO res = userService.userInfo(httpServletRequest);
 
+        return res;
+    }
+    
+    // 회원정보 수정
+    @PutMapping(value="/modifyUserInfo")
+    public ResponseDTO modifyUserInfo(@RequestBody Map<String, Object> reqMap, HttpServletRequest httpServletRequest) {
+        ResponseDTO res = userService.modifyUserInfo(reqMap, httpServletRequest);
+        
         return res;
     }
     
