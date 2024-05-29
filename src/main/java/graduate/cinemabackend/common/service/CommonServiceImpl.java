@@ -34,7 +34,7 @@ public class CommonServiceImpl implements CommonService {
 
     @Override
     @Transactional
-    public ResponseDTO movieCrawling() {
+    public ResponseDTO movieCrawling() { // 영화데이터 크롤링 이후 DB에 저장
         try {
             ResponseDTO res = new ResponseDTO();
             List<Map<String, Object>> movieList = new ArrayList<>(); // 추후 삭제(확인용)
