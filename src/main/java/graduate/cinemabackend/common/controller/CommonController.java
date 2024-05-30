@@ -33,7 +33,7 @@ public class CommonController { //공통으로 처리할거
     }
     
     @GetMapping(value="/currentNoti")
-    public ResponseDTO currentNoti() { // 최신 공지사항 목록 가져오기 - 5개
+    public ResponseDTO currentNoti() { // footer 공지사항 목록
         ResponseDTO res = commonService.currentNoti();
 
         return res;

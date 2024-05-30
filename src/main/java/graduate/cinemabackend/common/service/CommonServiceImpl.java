@@ -192,7 +192,7 @@ public class CommonServiceImpl implements CommonService {
         return res;
     }
 
-    // 최신 공지사항 목록 가져오기
+    // footer 공지사항 목록
     @Override
     @Transactional
     public ResponseDTO currentNoti() {
@@ -208,7 +208,7 @@ public class CommonServiceImpl implements CommonService {
             res.setResCode(300);
             res.setResMsg("최신 공지사항 목록 가져오기 실패");
         }
-        
+
         return res;
     }
 }
