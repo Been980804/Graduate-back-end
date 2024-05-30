@@ -37,6 +37,7 @@ public class UserServiceImpl implements UserService {
                 // 세션 초기화 및 Attr 설정
                 HttpSession session = httpServletRequest.getSession();
                 session.setMaxInactiveInterval(1800);
+                session.setAttribute("mem_no", resMap.get("mem_no"));
                 session.setAttribute("mem_name", resMap.get("mem_name"));
                 session.setAttribute("mem_id", resMap.get("mem_id"));
                 session.setAttribute("mem_class", resMap.get("mem_class"));
@@ -116,6 +117,7 @@ public class UserServiceImpl implements UserService {
         } else {
             res.setResCode(200);
             res.setResMsg("Welcome User");
+            res.setData("mem_no", session.getAttribute("mem_no"));
             res.setData("mem_name", session.getAttribute("mem_name"));
             res.setData("mem_class", session.getAttribute("mem_class"));
             res.setData("mem_id", session.getAttribute("mem_id"));
@@ -131,8 +133,8 @@ public class UserServiceImpl implements UserService {
 
         HttpSession session = httpServletRequest.getSession(false);
         if (session != null) {
-            String mem_id = (String) session.getAttribute("mem_id");
-            Map<String, Object> userInfo = userMapper.userInfo(mem_id);
+            String mem_no = (String) session.getAttribute("mem_no");
+            Map<String, Object> userInfo = userMapper.userInfo(mem_no);
 
             if (!userInfo.isEmpty()) {
                 res.setResCode(200);
@@ -148,6 +150,7 @@ public class UserServiceImpl implements UserService {
         }
         return res;
     }
+
     // 회원 정보 수정
     @Override
     @Transactional
@@ -156,9 +159,9 @@ public class UserServiceImpl implements UserService {
 
         HttpSession session = httpServletRequest.getSession(false);
         if (session != null) {
-            String now_id = (String) session.getAttribute("mem_id"); // 현재 아이디
+            String mem_no = (String) session.getAttribute("mem_no"); // 현재 아이디
 
-            reqMap.put("now_id", now_id);
+            reqMap.put("mem_no", mem_no);
 
             int updateRow = userMapper.modifyUserInfo(reqMap);
 
@@ -175,6 +178,7 @@ public class UserServiceImpl implements UserService {
         }
         return res;
     }
+
     // 회원탈퇴
     @Override
     @Transactional
@@ -183,9 +187,9 @@ public class UserServiceImpl implements UserService {
 
         HttpSession session = httpServletRequest.getSession(false);
         if (session != null) {
-            String mem_id = (String) session.getAttribute("mem_id"); // 현재 아이디
+            String mem_no = (String) session.getAttribute("mem_no"); // 현재 아이디
 
-            int deleteRow = userMapper.deleteAccount(mem_id);
+            int deleteRow = userMapper.deleteAccount(mem_no);
 
             if (deleteRow > 0) {
                 httpServletRequest.getSession().invalidate();
@@ -210,24 +214,17 @@ public class UserServiceImpl implements UserService {
 
         HttpSession session = httpServletRequest.getSession(false);
         if (session != null) {
-            String mem_id = (String) session.getAttribute("mem_id"); // 현재 아이디
+            String mem_no = (String) session.getAttribute("mem_no"); // 현재 아이디
 
-            Map<String, Object> getMemNo = userMapper.getMemNo(mem_id);
+            List<Map<String, Object>> likeMovieList = userMapper.likeMovie(mem_no);
 
-            if (!getMemNo.isEmpty()) {
-                List<Map<String, Object>> likeMovieList = userMapper.likeMovie(getMemNo);
-
-                if(!likeMovieList.isEmpty()){
-                    res.setResCode(200);
-                    res.setResMsg("선호 영화 리스트 조회 성공");
-                    res.setData("likeMovieList", likeMovieList);
-                } else{
-                    res.setResCode(300);
-                    res.setResMsg("선호 영화 리스트 조회 실패");
-                }
-            } else{
+            if (!likeMovieList.isEmpty()) {
+                res.setResCode(200);
+                res.setResMsg("선호 영화 리스트 조회 성공");
+                res.setData("likeMovieList", likeMovieList);
+            } else {
                 res.setResCode(300);
-                res.setResMsg("Don't exist");
+                res.setResMsg("선호 영화 리스트 조회 실패");
             }
 
         } else {

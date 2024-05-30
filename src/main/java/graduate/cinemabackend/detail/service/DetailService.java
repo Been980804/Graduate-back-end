@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import graduate.cinemabackend.common.dto.ResponseDTO;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public interface DetailService {
@@ -14,6 +15,8 @@ public interface DetailService {
     ResponseDTO getReview(String mov_no);
     // 영화 리뷰 작성
     ResponseDTO createReview(Map<String, Object> reqMap);
+    // 영화 리뷰 삭제
+    ResponseDTO deleteReview(Map<String, Object> reqMap, HttpServletRequest httpServletRequest);
     // 영화 좋아요
     ResponseDTO likeMovie(Map<String, Object> reqMap);
 }

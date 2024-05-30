@@ -64,7 +64,7 @@
             and qna_no = #{qna_no}
    </select>
    <!-- 문의사항 등록 -->
-   <insert id="createQna" parameterType="Map">
+   <insert id="createQna" parameterType="String">
         INSERT INTO
             cs_qna(
                 qes_mem_no,

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import graduate.cinemabackend.common.dto.ResponseDTO;
 import graduate.cinemabackend.detail.service.DetailService;
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/detail")
@@ -44,7 +45,14 @@ public class DetailController {
         return res;
     }
     
-    // 영화 좋아요
+    // 영화 리뷰 삭제
+    @PostMapping(value="/deleteReview")
+    public ResponseDTO deleteReview(@RequestBody Map<String, Object> reqMap, HttpServletRequest httpServletRequest) {// rev_no, mov_no
+        ResponseDTO res = detailService.deleteReview(reqMap, httpServletRequest);
+
+        return res;        
+    }
+        // 영화 좋아요
     @PostMapping(value="/likeMovie")
     public ResponseDTO likeMovie(@RequestBody Map<String, Object> reqMap) { // mov_no, mem_no
         ResponseDTO res = detailService.likeMovie(reqMap);

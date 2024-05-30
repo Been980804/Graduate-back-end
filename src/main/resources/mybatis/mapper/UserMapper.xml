@@ -7,7 +7,7 @@
     <!-- 로그인 -->
   <select id="selectUserInfo" parameterType="Map" resultType="Map">
     SELECT 
-      mem_name, mem_id, mem_pwd, mem_class
+      mem_no, mem_name, mem_id, mem_pwd, mem_class
     FROM
       member
     WHERE
@@ -43,7 +43,7 @@
       member
     WHERE
       use_flag = 'Y'
-      and mem_id = #{mem_id}
+      and mem_no = #{mem_no}
   </select>
   <!-- 회원정보 수정 -->
   <update id="modifyUserInfo" parameterType="Map">
@@ -58,7 +58,7 @@
       mod_date = now()
     WHERE
       use_flag = 'Y'
-      and mem_id = #{now_id}
+      and mem_no = #{mem_no}
   </update>
   <!-- 회원탈퇴 -->
   <update id="deleteAccount" parameterType="String">
@@ -68,20 +68,10 @@
       use_flag = 'N',
       mod_date = now()
     WHERE
-      mem_id = #{mem_id}
+      mem_no = #{mem_no}
   </update>
-  <!-- mem_no 얻기 -->
-  <select id="getMemNo" parameterType="String" resultType="Map">
-    SELECT
-      mem_no
-    FROM
-      member
-    WHERE
-      use_flag = 'Y'
-      and mem_id = #{mem_id}
-  </select>
   <!-- 선호 영화 조회 -->
-  <select id="likeMovie" parameterType="Map" resultType="Map">
+  <select id="likeMovie" parameterType="String" resultType="Map">
     SELECT
       lm.mov_no, mov.mov_posterURL, mov.mov_title
     FROM
