@@ -34,11 +34,24 @@
                 now()
             )
     </insert>
+    <!-- 공지사항 삭제 -->
+    <update id="deleteNoti" parameterType="String">
+        UPDATE
+            cs_noti
+        SET
+            use_flag = 'N',
+            mod_date = now()
+        WHERE
+            noti_no = #{noti_no}
+    </update>
     <!-- 리뷰 삭제 -->
-    <delete id="manageReview" parameterType="String">
-        DELETE FROM
+    <update id="manageReview" parameterType="String">
+        UDPATE 
             review
+        SET
+            use_flag = 'N',
+            mod_date = now()
         WHERE
             rev_no = #{rev_no}
-    </delete>
+    </update>
 </mapper>

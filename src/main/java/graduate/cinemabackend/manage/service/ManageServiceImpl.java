@@ -78,7 +78,24 @@ public class ManageServiceImpl implements ManageService {
 
     @Override
     @Transactional
-    public ResponseDTO manageReview(String rev_no) {
+    public ResponseDTO deleteNoti(String noti_no) {
+        ResponseDTO res = new ResponseDTO();
+
+        int deleteRow = manageMapper.deleteNoti(noti_no);
+
+        if(deleteRow > 0){
+            res.setResCode(200);
+            res.setResMsg("공지글 삭제 성공");
+        } else{
+            res.setResCode(300);
+            res.setResMsg("공지글 삭제 실패");
+        }
+        return res;
+    }
+
+    @Override
+    @Transactional
+    public ResponseDTO manageReview(String rev_no) { // 리뷰 삭제
         ResponseDTO res = new ResponseDTO();
 
         int deleteRow = manageMapper.manageReview(rev_no);

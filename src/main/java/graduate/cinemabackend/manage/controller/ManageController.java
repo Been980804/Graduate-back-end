@@ -27,14 +27,21 @@ public class ManageController {
         return res;
     }
 
-    @PostMapping("/createNoti")
+    @PostMapping(value="/createNoti")
     public ResponseDTO createNoti(@RequestBody Map<String, Object> reqMap, HttpServletRequest httpServletRequest) { // 공지사항 쓰기
         ResponseDTO res = manageService.createNoti(reqMap, httpServletRequest);
         
         return res;
     }
     
-    @PostMapping("/manageReview")
+    @PostMapping(value="/deleteNoti")
+    public ResponseDTO postMethodName(@PathVariable("noti_no") String noti_no) {
+        ResponseDTO res = manageService.deleteNoti(noti_no);
+
+        return res;
+    }
+    
+    @PostMapping(value="/manageReview")
     public ResponseDTO manageReview(@PathVariable("rev_no") String rev_no){ // 관리자 리뷰 삭제
         ResponseDTO res = manageService.manageReview(rev_no);
 

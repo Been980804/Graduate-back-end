@@ -47,14 +47,17 @@
         )
     </insert>
     <!-- 리뷰 삭제 -->
-    <delete id="deleteReview" parameterType="Map">
-        DELETE FROM
+    <update id="deleteReview" parameterType="Map">
+        UPDATE 
             review
+        SET
+            use_flag = 'N',
+            mod_date = now()
         WHERE
             rev_no = #{rev_no}
             and mov_no = #{mov_no}
             and mem_no = #{mem_no}
-    </delete>
+    </update>
     <!-- 좋아요 유무 체크 -->
     <select id="checkLike" parameterType="Map" resultType="boolean">
         SELECT

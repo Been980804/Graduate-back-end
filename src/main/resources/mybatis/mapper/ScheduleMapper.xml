@@ -4,6 +4,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="graduate.cinemabackend.schedule.dao.ScheduleMapper">
+    <!-- 상영시간표 가져오기 -->
     <select id="compare" parameterType="Map" resultType="Map">
         SELECT 
             th.th_name, h.hall_name, h.hall_seats, sch.sch_start, sch.sch_end, th.th_brand
