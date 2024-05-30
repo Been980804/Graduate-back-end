@@ -35,7 +35,7 @@ public class ManageController {
     }
     
     @PostMapping(value="/deleteNoti")
-    public ResponseDTO postMethodName(@PathVariable("noti_no") String noti_no) {
+    public ResponseDTO postMethodName(@PathVariable("noti_no") String noti_no) { // 공지사항 삭제
         ResponseDTO res = manageService.deleteNoti(noti_no);
 
         return res;
