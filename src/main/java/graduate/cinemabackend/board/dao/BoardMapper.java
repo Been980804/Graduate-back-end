@@ -11,4 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface BoardMapper {
     // 공지사항 목록
     List<Map<String, Object>> notiList();
+    // 문의사항 목록
+    List<Map<String, Object>> qnaList();
 }

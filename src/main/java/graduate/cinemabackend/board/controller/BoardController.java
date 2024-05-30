@@ -9,6 +9,7 @@ import graduate.cinemabackend.board.service.BoardService;
 import graduate.cinemabackend.common.dto.ResponseDTO;
 
 
+
 @RestController
 @RequestMapping("/board")
 public class BoardController {
@@ -19,6 +20,13 @@ public class BoardController {
     @GetMapping(value="/notiList")
     public ResponseDTO notiList() { // 공지사항 목록
         ResponseDTO res = boardService.notiList();
+
+        return res;
+    }
+    
+    @GetMapping(value="/qnaList")
+    public ResponseDTO getMethodName() { // 문의사항 목록
+        ResponseDTO res = boardService.qnaList();
 
         return res;
     }

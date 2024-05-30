@@ -18,7 +18,7 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     @Transactional
-    public ResponseDTO notiList() {
+    public ResponseDTO notiList() { // 공지사항 목록
         ResponseDTO res = new ResponseDTO();
 
         List<Map<String, Object>> notiList = boardMapper.notiList();
@@ -31,6 +31,25 @@ public class BoardServiceImpl implements BoardService{
             res.setResCode(300);
             res.setResMsg("공지사항 목록 가져오기 실패");
         }
+        return res;
+    }
+
+    @Override
+    @Transactional
+    public ResponseDTO qnaList() { // 문의사항 목록
+        ResponseDTO res = new ResponseDTO();
+        
+        List<Map<String, Object>> qnaList = boardMapper.qnaList();
+
+        if(!qnaList.isEmpty()){
+            res.setResCode(200);
+            res.setResMsg("문의사항 목록 가져오기 성공");
+            res.setData("qnaList", qnaList);
+        } else{
+            res.setResCode(300);
+            res.setResMsg("문의사항 목록 가져오기 실패");
+        }
+        
         return res;
     }
 }

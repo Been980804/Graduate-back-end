@@ -4,14 +4,26 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="graduate.cinemabackend.board.dao.BoardMapper">
+    <!-- 공지사항 목록 -->
    <select id="notiList" resultType="Map">
         SELECT
-            noti_no, mem.mem_name, noti_title, noti_cnt, noti.reg_date
+            noti_no, mem.mem_name, noti_title, noti_cnt, date_format(noti.reg_date, '%Y-%m-%d') as reg_date
         FROM
             cs_noti noti
         JOIN
             member mem ON mem.mem_no = noti.mem_no
         WHERE
             noti.use_flag = 'Y'
+   </select>
+   <!-- 문의사항 목록 -->
+   <select id="qnaList" resultType="Map">
+        SELECT
+            qna_no, mem.mem_name, qes_title, date_format(qes_reg_date, '%Y-%m-%d') as reg_date
+        FROM
+            cs_qna qna
+        JOIN
+            member mem ON mem.mem_no = qna.qes_mem_no
+        WHERE
+            qna.use_flag = 'Y'
    </select>
 </mapper>
