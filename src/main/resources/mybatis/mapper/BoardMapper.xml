@@ -51,8 +51,8 @@
    <!-- 문의사항 상세보기 -->
    <select id="detailQna" parameterType="String" resultType="Map">
         SELECT
-            qna_no, qm.mem_name as qes_mem_name, qes_title, qes_content, am.mem_name as ans_mem_name, ans_content, date_format(qes_reg_date,'%Y-%m-%d') as qes_reg_date,
-            date_format(ans_reg_date,'%Y-%m-%d') as ans_reg_date
+            qna_no, qm.mem_no as qes_mem_no, qm.mem_name as qes_mem_name, qes_title, qes_content, am.mem_name as ans_mem_name, ans_content,
+            date_format(qes_reg_date,'%Y-%m-%d') as qes_reg_date, date_format(ans_reg_date,'%Y-%m-%d') as ans_reg_date
         FROM
             cs_qna qna
         LEFT JOIN
@@ -80,4 +80,15 @@
                 now()
             )
    </insert>
+   <!-- 문의사항 삭제 -->
+   <update id="deleteQna" parameterType="Map">
+        UPDATE
+            cs_qna
+        SET 
+            use_flag = 'N',
+            mod_date = now()
+        WHERE
+            qna_no = #{qna_no}
+            and mem_no = #{mem_no}
+   </update>
 </mapper>

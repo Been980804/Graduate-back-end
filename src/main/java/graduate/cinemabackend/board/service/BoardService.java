@@ -19,4 +19,6 @@ public interface BoardService {
     ResponseDTO detailQna(String qna_no);
     // 문의사항 등록
     ResponseDTO createQna(Map<String, Object> reqMap, HttpServletRequest httpServletRequest);
+    // 문의사항 삭제
+    ResponseDTO deleteQna(String qna_no, HttpServletRequest httpServletRequest);
 }

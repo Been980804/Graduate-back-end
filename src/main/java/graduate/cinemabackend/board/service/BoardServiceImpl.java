@@ -1,5 +1,6 @@
 package graduate.cinemabackend.board.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -116,6 +117,36 @@ public class BoardServiceImpl implements BoardService {
             } else {
                 res.setResCode(300);
                 res.setResMsg("문의사항 등록 실패");
+            }
+
+        } else {
+            res.setResCode(300);
+            res.setResMsg("로그인 후 이용해 주세요.");
+        }
+        return res;
+    }
+
+    @Override
+    @Transactional
+    public ResponseDTO deleteQna(String qna_no, HttpServletRequest httpServletRequest) { // 문의사항 삭제
+        ResponseDTO res = new ResponseDTO();
+        Map<String, Object> reqMap = new HashMap<>();
+
+        HttpSession session = httpServletRequest.getSession(false);
+        if (session != null) {
+            String mem_no = (String) session.getAttribute("mem_no");
+
+            reqMap.put("mem_no", mem_no);
+            reqMap.put("qna_no", qna_no);
+
+            int deleteRow = boardMapper.deleteQna(reqMap);
+
+            if (deleteRow > 0) {
+                res.setResCode(200);
+                res.setResMsg("문의사항 삭제 성공");
+            } else {
+                res.setResCode(300);
+                res.setResMsg("문의사항 삭제 실패");
             }
 
         } else {
