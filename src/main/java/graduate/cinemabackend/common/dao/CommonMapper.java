@@ -18,4 +18,6 @@ public interface CommonMapper {
     void insertMovie(Map<String, Object> movieMap);
     // 영화 검색
     List<Map<String, Object>> search(String search);
+    // 최신 공지사항 목록 가져오기
+    List<Map<String, Object>> currentNoti();
 }

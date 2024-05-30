@@ -13,10 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import graduate.cinemabackend.common.dto.ResponseDTO;
 import graduate.cinemabackend.detail.service.DetailService;
 
-
-
-
-
 @RestController
 @RequestMapping("/detail")
 public class DetailController {

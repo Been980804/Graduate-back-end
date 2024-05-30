@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import graduate.cinemabackend.common.dto.ResponseDTO;
 import graduate.cinemabackend.common.service.CommonService;
 
+
 @RestController
 @RequestMapping("common")
 public class CommonController { //공통으로 처리할거
@@ -27,6 +28,13 @@ public class CommonController { //공통으로 처리할거
     @GetMapping("/search/{search}") // header 검색 기능
     public ResponseDTO search(@PathVariable("search") String search) {
         ResponseDTO res = commonService.search(search);
+
+        return res;
+    }
+    
+    @GetMapping(value="/currentNoti")
+    public ResponseDTO currentNoti() { // 최신 공지사항 목록 가져오기 - 5개
+        ResponseDTO res = commonService.currentNoti();
 
         return res;
     }
