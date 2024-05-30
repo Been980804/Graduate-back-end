@@ -17,4 +17,6 @@ public interface BoardMapper {
     Map<String, Object> detailNoti(String noti_no);
     // 문의사항 목록
     List<Map<String, Object>> qnaList();
+    // 문의사항 상세보기
+    Map<String, Object> detailQna(String qna_no);
 }

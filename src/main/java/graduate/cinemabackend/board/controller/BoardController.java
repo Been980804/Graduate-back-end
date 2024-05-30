@@ -8,10 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import graduate.cinemabackend.board.service.BoardService;
 import graduate.cinemabackend.common.dto.ResponseDTO;
-import org.springframework.web.bind.annotation.RequestParam;
-
-
-
 
 @RestController
 @RequestMapping("/board")
@@ -40,5 +36,13 @@ public class BoardController {
 
         return res;
     }
+
+    @GetMapping(value="/detailQna/{qna_no}")
+    public ResponseDTO detailQna(@PathVariable("qna_no") String qna_no) {
+        ResponseDTO res = boardService.detailQna(qna_no);
+
+        return res;
+    }
+    
     
 }

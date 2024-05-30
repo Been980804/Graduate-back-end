@@ -76,4 +76,22 @@ public class BoardServiceImpl implements BoardService {
 
         return res;
     }
+
+    @Override
+    @Transactional
+    public ResponseDTO detailQna(String qna_no) { // 문의사항 상세보기
+        ResponseDTO res = new ResponseDTO();
+
+        Map<String, Object> detailQna = boardMapper.detailQna(qna_no);
+
+        if(!detailQna.isEmpty()){
+            res.setResCode(200);
+            res.setResMsg("문의사항 상세보기 가져오기 성공");
+            res.setData("detailQna", detailQna);
+        } else{
+            res.setResCode(300);
+            res.setResMsg("문의사항 상세보기 가져오기 실패");
+        }
+        return res;
+    }
 }

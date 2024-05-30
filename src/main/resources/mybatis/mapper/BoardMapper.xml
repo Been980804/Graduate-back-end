@@ -48,4 +48,19 @@
         WHERE
             qna.use_flag = 'Y'
    </select>
+   <!-- 문의사항 상세보기 -->
+   <select id="detailQna" parameterType="String" resultType="Map">
+        SELECT
+            qm.mem_name as qes_mem_name, qes_title, qes_content, am.mem_name as ans_mem_name, ans_content, date_format(qes_reg_date,'%Y-%m-%d') as qes_reg_date,
+            date_format(ans_reg_date,'%Y-%m-%d') as ans_reg_date
+        FROM
+            cs_qna qna
+        LEFT JOIN
+            member qm ON qm.mem_no = qna.qes_mem_no
+        LEFT JOIN
+            member am ON am.mem_no = qna.ans_mem_no
+        WHERE
+            qna.use_flag = 'Y'
+            and qna_no = #{qna_no}
+   </select>
 </mapper>

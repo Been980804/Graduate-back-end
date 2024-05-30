@@ -12,4 +12,6 @@ public interface BoardService {
     ResponseDTO detailNoti(String noti_no);
     // 문의사항 목록
     ResponseDTO qnaList();
+    // 문의사항 상세보기
+    ResponseDTO detailQna(String qna_no);
 }
