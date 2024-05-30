@@ -148,7 +148,7 @@ public class UserServiceImpl implements UserService {
         }
         return res;
     }
-
+    // 회원 정보 수정
     @Override
     @Transactional
     public ResponseDTO modifyUserInfo(Map<String, Object> reqMap, HttpServletRequest httpServletRequest) {
@@ -175,7 +175,7 @@ public class UserServiceImpl implements UserService {
         }
         return res;
     }
-
+    // 회원탈퇴
     @Override
     @Transactional
     public ResponseDTO deleteAccount(HttpServletRequest httpServletRequest) {
