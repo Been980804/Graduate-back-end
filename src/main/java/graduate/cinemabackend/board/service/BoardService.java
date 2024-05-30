@@ -8,6 +8,8 @@ import graduate.cinemabackend.common.dto.ResponseDTO;
 public interface BoardService {
     // 공지사항 목록
     ResponseDTO notiList();
+    // 공지사항 상세보기
+    ResponseDTO detailNoti(String noti_no);
     // 문의사항 목록
     ResponseDTO qnaList();
 }

@@ -14,8 +14,30 @@
             member mem ON mem.mem_no = noti.mem_no
         WHERE
             noti.use_flag = 'Y'
+   </select>  
+   <!-- 공지사항 조회수 증가 -->
+   <update id="increaseCnt" parameterType="String">
+        UPDATE
+            cs_noti
+        SET
+            noti_cnt = noti_cnt + 1
+        WHERE
+            use_flag = 'Y'
+            and noti_no = #{noti_no}
+   </update>
+   <!-- 공지사항 상세보기 -->
+   <select id="detailNoti" parameterType="String" resultType="Map">
+        SELECT
+            noti_title, mem.mem_name, noti_content, noti_cnt, date_format(noti.reg_date, '%Y-%m-%d') as reg_date
+        FROM
+            cs_noti noti
+        JOIN
+            member mem ON mem.mem_no = noti.mem_no
+        WHERE
+            noti.use_flag = 'Y'
+            and noti_no = #{noti_no}
    </select>
-   <!-- 문의사항 목록 -->
+    <!-- 문의사항 목록 -->
    <select id="qnaList" resultType="Map">
         SELECT
             qna_no, mem.mem_name, qes_title, date_format(qes_reg_date, '%Y-%m-%d') as reg_date

@@ -11,6 +11,10 @@ import org.springframework.stereotype.Repository;
 public interface BoardMapper {
     // 공지사항 목록
     List<Map<String, Object>> notiList();
+    // 공지사항 조회수 증가
+    int increaseCnt(String noti_no);
+    // 공지사항 상세보기
+    Map<String, Object> detailNoti(String noti_no);
     // 문의사항 목록
     List<Map<String, Object>> qnaList();
 }
