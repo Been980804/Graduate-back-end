@@ -28,7 +28,7 @@
    <!-- 공지사항 상세보기 -->
    <select id="detailNoti" parameterType="String" resultType="Map">
         SELECT
-            noti_title, mem.mem_name, noti_content, noti_cnt, date_format(noti.reg_date, '%Y-%m-%d') as reg_date
+            noti_no, noti_title, mem.mem_name, noti_content, noti_cnt, date_format(noti.reg_date, '%Y-%m-%d') as reg_date
         FROM
             cs_noti noti
         JOIN
@@ -51,7 +51,7 @@
    <!-- 문의사항 상세보기 -->
    <select id="detailQna" parameterType="String" resultType="Map">
         SELECT
-            qm.mem_name as qes_mem_name, qes_title, qes_content, am.mem_name as ans_mem_name, ans_content, date_format(qes_reg_date,'%Y-%m-%d') as qes_reg_date,
+            qna_no, qm.mem_name as qes_mem_name, qes_title, qes_content, am.mem_name as ans_mem_name, ans_content, date_format(qes_reg_date,'%Y-%m-%d') as qes_reg_date,
             date_format(ans_reg_date,'%Y-%m-%d') as ans_reg_date
         FROM
             cs_qna qna

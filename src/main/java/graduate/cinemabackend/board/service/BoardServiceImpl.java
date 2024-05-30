@@ -124,6 +124,9 @@ public class BoardServiceImpl implements BoardService {
                     res.setResCode(300);
                     res.setResMsg("문의사항 등록 실패");
                 }
+            } else{
+                res.setResCode(300);
+                res.setResMsg("Don't Exist");
             }
         } else {
             res.setResCode(300);

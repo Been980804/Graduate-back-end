@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="graduate.cinemabackend.manage.dao.ManageMapper">
+    <update id="answerQna" parameterType="Map">
+        UPDATE
+            cs_qna
+        SET
+            ans_mem_no = #{mem_no},
+            ans_content = #{ans_content},
+            ans_reg_date = now(),
+            ans_mod_date = now()
+        WHERE
+            use_flag = 'Y'
+            and qna_no = #{qna_no}
+    </update>
+</mapper>
