@@ -12,4 +12,6 @@ public interface ManageMapper {
     int answerQna(Map<String, Object> reqMap);
     // 공지사항 쓰기
     int createNoti(Map<String, Object> reqMap);
+    // 리뷰 삭제
+    int manageReview(String rev_no);
 }

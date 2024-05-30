@@ -13,4 +13,6 @@ public interface ManageService {
     ResponseDTO answerQna(Map<String, Object> reqMap, HttpServletRequest httpServletRequest);
     // 공지사항 쓰기
     ResponseDTO createNoti(Map<String, Object> reqMap, HttpServletRequest httpServletRequest);
+    // 리뷰 삭제
+    ResponseDTO manageReview(String rev_no);
 }

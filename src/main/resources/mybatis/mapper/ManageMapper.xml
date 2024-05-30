@@ -34,4 +34,11 @@
                 now()
             )
     </insert>
+    <!-- 리뷰 삭제 -->
+    <delete id="manageReview" parameterType="String">
+        DELETE FROM
+            review
+        WHERE
+            rev_no = #{rev_no}
+    </delete>
 </mapper>
