@@ -21,7 +21,7 @@ public class ScheduleController {
     @Autowired
     ScheduleService scheduleService;
     
-    //영화 스케줄 비교 - test
+    //영화 스케줄 비교 - test -> 추후 수정필요
     // http://localhost:8080/schedule/compare/mov0000002/2024-05-29/부평구
     @GetMapping(value="/compare/{mov_no}/{sch_date}/{th_region}")
     public ResponseDTO compare(@PathVariable("mov_no") String mov_no, 

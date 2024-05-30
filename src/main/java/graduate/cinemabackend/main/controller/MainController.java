@@ -8,10 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 import graduate.cinemabackend.common.dto.ResponseDTO;
 import graduate.cinemabackend.main.service.MainService;
 
-
-
-
-
 @RestController
 @RequestMapping("/main")
 public class MainController {

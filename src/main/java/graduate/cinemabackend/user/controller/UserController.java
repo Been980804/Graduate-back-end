@@ -15,9 +15,6 @@ import graduate.cinemabackend.common.dto.ResponseDTO;
 import graduate.cinemabackend.user.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 
-
-
-
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -89,7 +86,8 @@ public class UserController {
 
         return res;
     }
-    // 선호 영화 리스트 가져오기 -> 추후 페이징 처리
+    
+    // 선호 영화 리스트 가져오기
     @GetMapping(value="likeMovie")
     public ResponseDTO likeMovie(HttpServletRequest httpServletRequest) {
         ResponseDTO res = userService.likeMovie(httpServletRequest);
