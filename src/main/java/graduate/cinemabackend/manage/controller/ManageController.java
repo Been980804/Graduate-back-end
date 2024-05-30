@@ -26,4 +26,11 @@ public class ManageController {
         return res;
     }
 
+    @PostMapping("/createNoti")
+    public ResponseDTO createNoti(@RequestBody Map<String, Object> reqMap, HttpServletRequest httpServletRequest) { // 공지사항 쓰기
+        ResponseDTO res = manageService.createNoti(reqMap, httpServletRequest);
+        
+        return res;
+    }
+    
 }

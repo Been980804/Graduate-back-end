@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import graduate.cinemabackend.common.dto.ResponseDTO;
 import graduate.cinemabackend.manage.dao.ManageMapper;
@@ -35,6 +36,36 @@ public class ManageServiceImpl implements ManageService {
             } else {
                 res.setResCode(300);
                 res.setResMsg("문의사항 답변 실패");
+            }
+
+        } else {
+            res.setResCode(300);
+            res.setResMsg("로그인 후 이용해 주세요.");
+        }
+
+        return res;
+    }
+
+    @Override
+    @Transactional
+    public ResponseDTO createNoti(Map<String, Object> reqMap, HttpServletRequest httpServletRequest) {
+        ResponseDTO res = new ResponseDTO();
+
+        HttpSession session = httpServletRequest.getSession(false);
+
+        if (session != null) {
+            String mem_no = (String) session.getAttribute("mem_no");
+
+            reqMap.put("mem_no", mem_no);
+
+            int insertRow = manageMapper.createNoti(reqMap);
+
+            if (insertRow > 0) {
+                res.setResCode(200);
+                res.setResMsg("공지사항 쓰기 성공");
+            } else {
+                res.setResCode(300);
+                res.setResMsg("공지사항 쓰기 실패");
             }
 
         } else {

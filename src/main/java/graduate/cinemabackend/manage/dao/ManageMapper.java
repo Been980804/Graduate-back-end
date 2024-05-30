@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface ManageMapper {
     // 문의사항 답변
     int answerQna(Map<String, Object> reqMap);
+    // 공지사항 쓰기
+    int createNoti(Map<String, Object> reqMap);
 }

@@ -11,4 +11,6 @@ import jakarta.servlet.http.HttpServletRequest;
 public interface ManageService {
     // 문의사항 답변
     ResponseDTO answerQna(Map<String, Object> reqMap, HttpServletRequest httpServletRequest);
+    // 공지사항 쓰기
+    ResponseDTO createNoti(Map<String, Object> reqMap, HttpServletRequest httpServletRequest);
 }

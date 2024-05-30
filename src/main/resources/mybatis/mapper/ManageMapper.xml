@@ -4,6 +4,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="graduate.cinemabackend.manage.dao.ManageMapper">
+    <!-- 문의사항 답변 -->
     <update id="answerQna" parameterType="String">
         UPDATE
             cs_qna
@@ -16,4 +17,21 @@
             use_flag = 'Y'
             and qna_no = #{qna_no}
     </update>
+    <!-- 공지사항 쓰기 -->
+    <insert id="createNoti" parameterType="Map">
+        INSERT INTO
+            cs_noti(
+                mem_no,
+                noti_title,
+                noti_content,
+                reg_date,
+                mod_date
+            ) VALUES(
+                #{mem_no},
+                #{noti_title},
+                #{noti_content},
+                now(),
+                now()
+            )
+    </insert>
 </mapper>
