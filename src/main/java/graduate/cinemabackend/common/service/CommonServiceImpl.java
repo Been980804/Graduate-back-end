@@ -202,13 +202,32 @@ public class CommonServiceImpl implements CommonService {
 
         if(!notiList.isEmpty()){
             res.setResCode(200);
-            res.setResMsg("최신 공지사항 목록 가져오기 성공");
+            res.setResMsg("footer 공지사항 목록 가져오기 성공");
             res.setData("notiList", notiList);
         } else{
             res.setResCode(300);
-            res.setResMsg("최신 공지사항 목록 가져오기 실패");
+            res.setResMsg("footer 공지사항 목록 가져오기 실패");
         }
 
+        return res;
+    }
+
+    // footer 문의사항 목록
+    @Override
+    @Transactional
+    public ResponseDTO currentQna() {
+        ResponseDTO res = new ResponseDTO();
+        
+        List<Map<String, Object>> qnaList = commonMapper.currentQna();
+
+        if(!qnaList.isEmpty()){
+            res.setResCode(200);
+            res.setResMsg("footer 문의사항 목록 가져오기 성공");
+            res.setData("qnaList", qnaList);
+        } else{
+            res.setResCode(300);
+            res.setResMsg("footer 문의사항 목록 가져오기 실패");
+        }
         return res;
     }
 }

@@ -20,4 +20,6 @@ public interface CommonMapper {
     List<Map<String, Object>> search(String search);
     // footer 공지사항 목록
     List<Map<String, Object>> currentNoti();
+    // footer 문의사항 목록
+    List<Map<String, Object>> currentQna();
 }

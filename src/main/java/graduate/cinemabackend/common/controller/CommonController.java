@@ -10,6 +10,7 @@ import graduate.cinemabackend.common.dto.ResponseDTO;
 import graduate.cinemabackend.common.service.CommonService;
 
 
+
 @RestController
 @RequestMapping("common")
 public class CommonController { //공통으로 처리할거
@@ -35,6 +36,13 @@ public class CommonController { //공통으로 처리할거
     @GetMapping(value="/currentNoti")
     public ResponseDTO currentNoti() { // footer 공지사항 목록
         ResponseDTO res = commonService.currentNoti();
+
+        return res;
+    }
+    
+    @GetMapping(value="/currentQna")
+    public ResponseDTO currentQna() { // footer 문의사항 목록
+        ResponseDTO res = commonService.currentQna();
 
         return res;
     }

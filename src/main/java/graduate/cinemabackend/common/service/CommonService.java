@@ -12,4 +12,6 @@ public interface CommonService {
     ResponseDTO search(String search);
     // footer 공지사항 목록
     ResponseDTO currentNoti();
+    // footer 문의사항 목록
+    ResponseDTO currentQna();
 }
