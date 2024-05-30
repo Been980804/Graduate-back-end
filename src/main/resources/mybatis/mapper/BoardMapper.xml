@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="graduate.cinemabackend.board.dao.BoardMapper">
+   <select id="notiList" resultType="Map">
+        SELECT
+            noti_no, mem.mem_name, noti_title, noti_cnt, noti.reg_date
+        FROM
+            cs_noti noti
+        JOIN
+            member mem ON mem.mem_no = noti.mem_no
+        WHERE
+            noti.use_flag = 'Y'
+   </select>
+</mapper>
