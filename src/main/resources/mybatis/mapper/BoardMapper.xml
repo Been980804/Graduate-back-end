@@ -63,4 +63,21 @@
             qna.use_flag = 'Y'
             and qna_no = #{qna_no}
    </select>
+   <!-- 문의사항 등록 -->
+   <insert id="createQna" parameterType="Map">
+        INSERT INTO
+            cs_qna(
+                qes_mem_no,
+                qes_title,
+                qes_content,
+                qes_reg_date,
+                qes_mod_date
+            ) VALUES(
+                #{mem_no},
+                #{qes_title},
+                #{qes_content},
+                now(),
+                now()
+            )
+   </insert>
 </mapper>

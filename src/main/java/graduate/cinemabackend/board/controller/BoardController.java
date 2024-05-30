@@ -1,13 +1,19 @@
 package graduate.cinemabackend.board.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import graduate.cinemabackend.board.service.BoardService;
 import graduate.cinemabackend.common.dto.ResponseDTO;
+import jakarta.servlet.http.HttpServletRequest;
+
 
 @RestController
 @RequestMapping("/board")
@@ -38,11 +44,17 @@ public class BoardController {
     }
 
     @GetMapping(value="/detailQna/{qna_no}")
-    public ResponseDTO detailQna(@PathVariable("qna_no") String qna_no) {
+    public ResponseDTO detailQna(@PathVariable("qna_no") String qna_no) { // 문의사항 상세보기
         ResponseDTO res = boardService.detailQna(qna_no);
 
         return res;
     }
     
+    @PostMapping(value="/createQna")
+    public ResponseDTO createQna(@RequestBody Map<String, Object> reqMap, HttpServletRequest httpServletRequest) { // 문의사항 등록하기
+        ResponseDTO res = boardService.createQna(reqMap, httpServletRequest);
+        
+        return res;
+    }
     
 }

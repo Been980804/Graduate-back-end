@@ -19,4 +19,6 @@ public interface BoardMapper {
     List<Map<String, Object>> qnaList();
     // 문의사항 상세보기
     Map<String, Object> detailQna(String qna_no);
+    // 문의사항 등록
+    int createQna(Map<String, Object> reqMap);
 }

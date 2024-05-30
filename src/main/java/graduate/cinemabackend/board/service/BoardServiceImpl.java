@@ -9,12 +9,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import graduate.cinemabackend.board.dao.BoardMapper;
 import graduate.cinemabackend.common.dto.ResponseDTO;
+import graduate.cinemabackend.user.dao.UserMapper;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Service
 public class BoardServiceImpl implements BoardService {
 
     @Autowired
     BoardMapper boardMapper;
+
+    @Autowired
+    UserMapper userMapper; // 현재 회원 mem_no를 얻기 위함
 
     @Override
     @Transactional
@@ -51,7 +57,7 @@ public class BoardServiceImpl implements BoardService {
                 res.setResCode(300);
                 res.setResMsg("공지사항 상세보기 가져오기 실패");
             }
-        } else{
+        } else {
             res.setResCode(300);
             res.setResMsg("조회수 증가 실패");
         }
@@ -84,13 +90,44 @@ public class BoardServiceImpl implements BoardService {
 
         Map<String, Object> detailQna = boardMapper.detailQna(qna_no);
 
-        if(!detailQna.isEmpty()){
+        if (!detailQna.isEmpty()) {
             res.setResCode(200);
             res.setResMsg("문의사항 상세보기 가져오기 성공");
             res.setData("detailQna", detailQna);
-        } else{
+        } else {
             res.setResCode(300);
             res.setResMsg("문의사항 상세보기 가져오기 실패");
+        }
+        return res;
+    }
+
+    @Override
+    @Transactional
+    public ResponseDTO createQna(Map<String, Object> reqMap, HttpServletRequest httpServletRequest) { // 문의사항 등록
+        ResponseDTO res = new ResponseDTO();
+
+        HttpSession session = httpServletRequest.getSession(false);
+        if (session != null) {
+            String mem_id = (String) session.getAttribute("mem_id"); // 현재 아이디
+
+            Map<String, Object> getMemNo = userMapper.getMemNo(mem_id); // 아이디에 해당하는 mem_no값
+
+            if (!getMemNo.isEmpty()) {
+                reqMap.put("mem_no", getMemNo.get("mem_no"));
+
+                int insertRow = boardMapper.createQna(reqMap); 
+
+                if (insertRow > 0) {
+                    res.setResCode(200);
+                    res.setResMsg("문의사항 등록 성공");
+                } else {
+                    res.setResCode(300);
+                    res.setResMsg("문의사항 등록 실패");
+                }
+            }
+        } else {
+            res.setResCode(300);
+            res.setResMsg("로그인 후 이용해 주세요.");
         }
         return res;
     }
