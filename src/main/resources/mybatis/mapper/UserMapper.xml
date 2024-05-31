@@ -18,7 +18,7 @@
   <insert id="signup" parameterType="Map">
     INSERT INTO
         member(
-            mem_name, mem_id, mem_pwd, mem_phone, mem_birth, mem_email, reg_date,
+            mem_name, mem_id, mem_pwd, mem_phone, mem_birth, mem_email, reg_date
         )
     VALUES(
         #{mem_name}, #{mem_id}, #{mem_pwd}, #{mem_phone}, #{mem_birth}, #{mem_email}, now()
