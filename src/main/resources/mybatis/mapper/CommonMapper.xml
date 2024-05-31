@@ -80,7 +80,7 @@
     <!-- 영화 검색 -->
     <select id="search" parameterType="String" resultType="Map">
         SELECT
-            mov_no, mov_posterURL, mov_name
+            mov_no, mov_posterURL, mov_title
         FROM
             movie
         WHERE
