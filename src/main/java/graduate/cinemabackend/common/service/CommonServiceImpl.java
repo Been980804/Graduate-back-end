@@ -37,7 +37,6 @@ public class CommonServiceImpl implements CommonService {
     public ResponseDTO movieCrawling() { // 영화데이터 크롤링 이후 DB에 저장
         try {
             ResponseDTO res = new ResponseDTO();
-            List<Map<String, Object>> movieList = new ArrayList<>(); // 추후 삭제(확인용)
             try {
                 Document cgvDoc = Jsoup.connect(cgvURL).get();
 
@@ -137,22 +136,18 @@ public class CommonServiceImpl implements CommonService {
                     String intro = detailDoc.getElementsByClass("sect-story-movie").text();
                     movieMap.put("mov_intro", intro);
 
-                    movieList.add(movieMap); // 추후 삭제(확인용)
-
                     boolean checkMovieExist = commonMapper.checkMovieExist((String) movieMap.get("mov_title"));
                     if (checkMovieExist) {
                         commonMapper.updateMovie(movieMap);
 
                         res.setResCode(200);
                         res.setResMsg("크롤링 데이터 DB update 성공");
-                        res.setData("movieList", movieList);
 
                     } else {
                         commonMapper.insertMovie(movieMap);
 
                         res.setResCode(200);
                         res.setResMsg("크롤링 데이터 insert 성공");
-                        res.setData("movieList", movieList);
 
                     }
                 }
