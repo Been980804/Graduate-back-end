@@ -18,7 +18,7 @@
     <!-- 영화 리뷰 가져오기 -->
     <select id="getReview" parameterType="String" resultType="Map">
         SELECT
-            rev.rev_no, m.mem_no, m.mem_name, rev.rev_rating, rev.rev_content, 
+            rev.rev_no, m.mem_no, m.mem_name, m.mem_id, rev.rev_rating, rev.rev_content, 
             DATE_FORMAT(rev.reg_date, '%Y/%m/%d %H:%i(%p)') AS reg_date
         FROM
             review rev
