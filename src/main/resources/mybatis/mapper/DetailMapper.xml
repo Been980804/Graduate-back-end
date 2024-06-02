@@ -37,7 +37,7 @@
             mov_no,
             rev_rating,
             rev_content,
-            reg_date,          
+            reg_date   
         ) VALUES(
             #{mem_no},
             #{mov_no},
