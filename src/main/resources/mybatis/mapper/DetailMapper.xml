@@ -9,7 +9,8 @@
         SELECT
             mov.mov_no, mov_title, mov_titleEng, mov_director, mov_actor, mov_date, mov_posterURL,
             mov_state, mov_dday, mov_nation, mov_runtime, mov_intro, mov_rating, mov_genre,
-            FORMAT(COUNT(lm.mov_no), 0) as likeCnt
+            FORMAT(COUNT(lm.mov_no), 0) as likeCnt, 
+            (SELECT COUNT(*) FROM review WHERE mov_no = #{mov_no}) AS reviewCnt
         FROM
             movie mov
         LEFT JOIN
