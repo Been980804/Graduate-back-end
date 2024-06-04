@@ -94,7 +94,7 @@
     <!-- footer 공지사항 목록 -->
     <select id="currentNoti" resultType="Map">
         SELECT
-            noti_no, noti_title, date_format(reg_date, '%Y-%m-%d') as reg_date
+            noti_no, noti_title, date_format(reg_date, '%Y-%m-%d %H:%i:%s') as reg_date
         FROM
             cs_noti
         WHERE
@@ -106,7 +106,7 @@
     <!-- footer 문의사항 목록 -->
     <select id="currentQna" resultType="Map">
         SELECT
-            qna_no, qes_title, date_format(qes_reg_date, '%Y-%m-%d') as qes_reg_date
+            qna_no, qes_title, date_format(qes_reg_date, '%Y-%m-%d %H:%i:%s') as qes_reg_date
         FROM
             cs_qna
         WHERE

@@ -7,13 +7,15 @@
     <!-- 공지사항 목록 -->
    <select id="notiList" resultType="Map">
         SELECT
-            noti_no, mem.mem_name, noti_title, noti_cnt, date_format(noti.reg_date, '%Y-%m-%d') as reg_date
+            noti_no, mem.mem_name, noti_title, noti_cnt, date_format(noti.reg_date, '%Y-%m-%d %H:%i:%s') as reg_date
         FROM
             cs_noti noti
         JOIN
             member mem ON mem.mem_no = noti.mem_no
         WHERE
             noti.use_flag = 'Y'
+        ORDER BY
+            reg_date DESC
    </select>  
    <!-- 공지사항 조회수 증가 -->
    <update id="increaseCnt" parameterType="String">
@@ -28,7 +30,7 @@
    <!-- 공지사항 상세보기 -->
    <select id="detailNoti" parameterType="String" resultType="Map">
         SELECT
-            noti_no, noti_title, mem.mem_name, noti_content, noti_cnt, date_format(noti.reg_date, '%Y-%m-%d') as reg_date
+            noti_no, noti_title, mem.mem_name, noti_content, noti_cnt, date_format(noti.reg_date, '%Y-%m-%d %H:%i:%s') as reg_date
         FROM
             cs_noti noti
         JOIN
