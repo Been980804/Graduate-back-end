@@ -30,7 +30,7 @@ public class BoardController {
         return res;
     }
     
-    @GetMapping(value="detailNoti/{noti_no}")
+    @GetMapping(value="/detailNoti/{noti_no}")
     public ResponseDTO detailNoti(@PathVariable("noti_no") String noti_no) { // 공지사항 상세보기
         ResponseDTO res = boardService.detailNoti(noti_no);
 
