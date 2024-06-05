@@ -85,7 +85,7 @@
             movie
         WHERE
             use_flag = 'Y'
-            <if test="search != all">
+            <if test="search != 'all'">
                 and mov_title like concat('%', #{search}, '%')
             </if>
         ORDER BY
