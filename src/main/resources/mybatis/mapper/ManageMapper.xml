@@ -46,7 +46,7 @@
     </update>
     <!-- 리뷰 삭제 -->
     <update id="manageReview" parameterType="String">
-        UDPATE 
+        UPDATE 
             review
         SET
             use_flag = 'N',

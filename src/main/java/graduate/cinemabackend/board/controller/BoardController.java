@@ -8,12 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import graduate.cinemabackend.board.service.BoardService;
 import graduate.cinemabackend.common.dto.ResponseDTO;
-import jakarta.servlet.http.HttpServletRequest;
 
 
 @RestController
@@ -52,15 +50,15 @@ public class BoardController {
     }
     
     @PostMapping(value="/createQna")
-    public ResponseDTO createQna(@RequestBody Map<String, Object> reqMap, HttpServletRequest httpServletRequest) { // 문의사항 등록하기
-        ResponseDTO res = boardService.createQna(reqMap, httpServletRequest);
+    public ResponseDTO createQna(@RequestBody Map<String, Object> reqMap) { // 문의사항 등록하기
+        ResponseDTO res = boardService.createQna(reqMap);
         
         return res;
     }
 
     @PostMapping(value="deleteQna")
-    public ResponseDTO deleteQna(@RequestParam String qna_no, HttpServletRequest httpServletRequest) {
-        ResponseDTO res = boardService.deleteQna(qna_no, httpServletRequest);
+    public ResponseDTO deleteQna(@RequestBody Map<String, Object> reqMap) { // 문의사항 삭제
+        ResponseDTO res = boardService.deleteQna(reqMap);
         
         return res;
     }

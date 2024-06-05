@@ -8,8 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import graduate.cinemabackend.common.dto.ResponseDTO;
 import graduate.cinemabackend.manage.dao.ManageMapper;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 
 @Service
 public class ManageServiceImpl implements ManageService {
@@ -18,29 +16,17 @@ public class ManageServiceImpl implements ManageService {
     ManageMapper manageMapper;
 
     @Override
-    public ResponseDTO answerQna(Map<String, Object> reqMap, HttpServletRequest httpServletRequest) { // 문의사항 답변
+    public ResponseDTO answerQna(Map<String, Object> reqMap) { // 문의사항 답변
         ResponseDTO res = new ResponseDTO();
 
-        HttpSession session = httpServletRequest.getSession(false);
+        int updateRow = manageMapper.answerQna(reqMap);
 
-        if (session != null) {
-            String mem_no = (String) session.getAttribute("mem_no");
-
-            reqMap.put("mem_no", mem_no);
-
-            int updateRow = manageMapper.answerQna(reqMap);
-
-            if (updateRow > 0) {
-                res.setResCode(200);
-                res.setResMsg("문의사항 답변 성공");
-            } else {
-                res.setResCode(300);
-                res.setResMsg("문의사항 답변 실패");
-            }
-
+        if (updateRow > 0) {
+            res.setResCode(200);
+            res.setResMsg("문의사항 답변 성공");
         } else {
             res.setResCode(300);
-            res.setResMsg("로그인 후 이용해 주세요.");
+            res.setResMsg("문의사항 답변 실패");
         }
 
         return res;
@@ -48,29 +34,17 @@ public class ManageServiceImpl implements ManageService {
 
     @Override
     @Transactional
-    public ResponseDTO createNoti(Map<String, Object> reqMap, HttpServletRequest httpServletRequest) {
+    public ResponseDTO createNoti(Map<String, Object> reqMap) { // 공지사항 쓰기
         ResponseDTO res = new ResponseDTO();
 
-        HttpSession session = httpServletRequest.getSession(false);
+        int insertRow = manageMapper.createNoti(reqMap);
 
-        if (session != null) {
-            String mem_no = (String) session.getAttribute("mem_no");
-
-            reqMap.put("mem_no", mem_no);
-
-            int insertRow = manageMapper.createNoti(reqMap);
-
-            if (insertRow > 0) {
-                res.setResCode(200);
-                res.setResMsg("공지사항 쓰기 성공");
-            } else {
-                res.setResCode(300);
-                res.setResMsg("공지사항 쓰기 실패");
-            }
-
+        if (insertRow > 0) {
+            res.setResCode(200);
+            res.setResMsg("공지사항 쓰기 성공");
         } else {
             res.setResCode(300);
-            res.setResMsg("로그인 후 이용해 주세요.");
+            res.setResMsg("공지사항 쓰기 실패");
         }
 
         return res;
@@ -78,15 +52,15 @@ public class ManageServiceImpl implements ManageService {
 
     @Override
     @Transactional
-    public ResponseDTO deleteNoti(String noti_no) {
+    public ResponseDTO deleteNoti(String noti_no) { // 공지사항 삭제
         ResponseDTO res = new ResponseDTO();
 
         int deleteRow = manageMapper.deleteNoti(noti_no);
 
-        if(deleteRow > 0){
+        if (deleteRow > 0) {
             res.setResCode(200);
             res.setResMsg("공지글 삭제 성공");
-        } else{
+        } else {
             res.setResCode(300);
             res.setResMsg("공지글 삭제 실패");
         }
@@ -100,10 +74,10 @@ public class ManageServiceImpl implements ManageService {
 
         int deleteRow = manageMapper.manageReview(rev_no);
 
-        if(deleteRow > 0){
+        if (deleteRow > 0) {
             res.setResCode(200);
             res.setResMsg("리뷰 삭제 성공");
-        } else{
+        } else {
             res.setResCode(300);
             res.setResMsg("리뷰 삭제 실패");
         }

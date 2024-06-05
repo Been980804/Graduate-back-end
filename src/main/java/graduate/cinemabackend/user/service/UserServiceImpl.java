@@ -40,6 +40,7 @@ public class UserServiceImpl implements UserService {
                 session.setAttribute("mem_name", resMap.get("mem_name"));
                 session.setAttribute("mem_id", resMap.get("mem_id"));
                 session.setAttribute("mem_class", resMap.get("mem_class"));
+                res.setData("resMap", resMap);
             } else {
                 res.setResCode(300);
                 res.setResMsg("ID 또는 PW가 일치하지 않습니다.");

@@ -5,7 +5,6 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import graduate.cinemabackend.common.dto.ResponseDTO;
-import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public interface BoardService {
@@ -18,7 +17,7 @@ public interface BoardService {
     // 문의사항 상세보기
     ResponseDTO detailQna(String qna_no);
     // 문의사항 등록
-    ResponseDTO createQna(Map<String, Object> reqMap, HttpServletRequest httpServletRequest);
+    ResponseDTO createQna(Map<String, Object> reqMap);
     // 문의사항 삭제
-    ResponseDTO deleteQna(String qna_no, HttpServletRequest httpServletRequest);
+    ResponseDTO deleteQna(Map<String, Object> reqMap);
 }

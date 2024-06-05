@@ -1,6 +1,5 @@
 package graduate.cinemabackend.board.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,8 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import graduate.cinemabackend.board.dao.BoardMapper;
 import graduate.cinemabackend.common.dto.ResponseDTO;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -100,59 +97,37 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     @Transactional
-    public ResponseDTO createQna(Map<String, Object> reqMap, HttpServletRequest httpServletRequest) { // 문의사항 등록
+    public ResponseDTO createQna(Map<String, Object> reqMap) { // 문의사항 등록
         ResponseDTO res = new ResponseDTO();
 
-        HttpSession session = httpServletRequest.getSession(false);
-        if (session != null) {
-            String mem_no = (String) session.getAttribute("mem_no");
+        int insertRow = boardMapper.createQna(reqMap);
 
-            reqMap.put("mem_no", mem_no);
-
-            int insertRow = boardMapper.createQna(reqMap);
-
-            if (insertRow > 0) {
-                res.setResCode(200);
-                res.setResMsg("문의사항 등록 성공");
-            } else {
-                res.setResCode(300);
-                res.setResMsg("문의사항 등록 실패");
-            }
-
+        if (insertRow > 0) {
+            res.setResCode(200);
+            res.setResMsg("문의사항 등록 성공");
         } else {
             res.setResCode(300);
-            res.setResMsg("로그인 후 이용해 주세요.");
+            res.setResMsg("문의사항 등록 실패");
         }
+
         return res;
     }
 
     @Override
     @Transactional
-    public ResponseDTO deleteQna(String qna_no, HttpServletRequest httpServletRequest) { // 문의사항 삭제
+    public ResponseDTO deleteQna(Map<String, Object> reqMap) { // 문의사항 삭제
         ResponseDTO res = new ResponseDTO();
-        Map<String, Object> reqMap = new HashMap<>();
 
-        HttpSession session = httpServletRequest.getSession(false);
-        if (session != null) {
-            String mem_no = (String) session.getAttribute("mem_no");
+        int deleteRow = boardMapper.deleteQna(reqMap);
 
-            reqMap.put("mem_no", mem_no);
-            reqMap.put("qna_no", qna_no);
-
-            int deleteRow = boardMapper.deleteQna(reqMap);
-
-            if (deleteRow > 0) {
-                res.setResCode(200);
-                res.setResMsg("문의사항 삭제 성공");
-            } else {
-                res.setResCode(300);
-                res.setResMsg("문의사항 삭제 실패");
-            }
-
+        if (deleteRow > 0) {
+            res.setResCode(200);
+            res.setResMsg("문의사항 삭제 성공");
         } else {
             res.setResCode(300);
-            res.setResMsg("로그인 후 이용해 주세요.");
+            res.setResMsg("문의사항 삭제 실패");
         }
+
         return res;
     }
 }

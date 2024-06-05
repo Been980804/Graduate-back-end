@@ -68,7 +68,7 @@
             and qna_no = #{qna_no}
    </select>
    <!-- 문의사항 등록 -->
-   <insert id="createQna" parameterType="String">
+   <insert id="createQna" parameterType="Map">
         INSERT INTO
             cs_qna(
                 qes_mem_no,
@@ -77,7 +77,7 @@
                 qes_reg_date,
                 qes_mod_date
             ) VALUES(
-                #{mem_no},
+                #{qes_mem_no},
                 #{qes_title},
                 #{qes_content},
                 now(),
@@ -90,9 +90,9 @@
             cs_qna
         SET 
             use_flag = 'N',
-            mod_date = now()
+            qes_mod_date = now()
         WHERE
             qna_no = #{qna_no}
-            and mem_no = #{mem_no}
+            and qes_mem_no = #{mem_no}
    </update>
 </mapper>
