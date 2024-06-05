@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,21 +55,17 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public ResponseDTO signup(Map<String, Object> reqMap) { // 회원가입
         ResponseDTO res = new ResponseDTO();
-        try {
-            int result = userMapper.signup(reqMap);
 
-            if (result == 1) {
-                res.setResCode(200);
-                res.setResMsg("회원가입 회원 정보 등록");
-            } else {
-                res.setResCode(300);
-                res.setResMsg("회원가입 회원 정보 등록에 실패했습니다.");
-            }
-        } catch (DataIntegrityViolationException e) {
-            res.setResCode(500);
-            res.setResMsg("이미 등록되어 있는 정보 입니다.");
+        int result = userMapper.signup(reqMap);
 
+        if (result == 1) {
+            res.setResCode(200);
+            res.setResMsg("회원가입 회원 정보 등록");
+        } else {
+            res.setResCode(300);
+            res.setResMsg("회원가입 회원 정보 등록에 실패했습니다.");
         }
+
         return res;
     }
 
