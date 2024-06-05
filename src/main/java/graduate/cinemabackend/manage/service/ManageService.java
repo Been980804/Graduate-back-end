@@ -13,7 +13,7 @@ public interface ManageService {
     // 공지사항 쓰기
     ResponseDTO createNoti(Map<String, Object> reqMap);
     // 공지사항 삭제
-    ResponseDTO deleteNoti(String noti_no);
+    ResponseDTO deleteNoti(Map<String, Object> reqMap);
     // 리뷰 삭제
-    ResponseDTO manageReview(String rev_no);
+    ResponseDTO manageReview(Map<String, Object> reqMap);
 }

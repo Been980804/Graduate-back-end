@@ -3,7 +3,6 @@ package graduate.cinemabackend.manage.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,15 +33,15 @@ public class ManageController {
     }
     
     @PostMapping(value="/deleteNoti")
-    public ResponseDTO postMethodName(@PathVariable("noti_no") String noti_no) { // 공지사항 삭제
-        ResponseDTO res = manageService.deleteNoti(noti_no);
+    public ResponseDTO postMethodName(@RequestBody Map<String, Object> reqMap) { // 공지사항 삭제
+        ResponseDTO res = manageService.deleteNoti(reqMap);
 
         return res;
     }
     
     @PostMapping(value="/manageReview")
-    public ResponseDTO manageReview(@PathVariable("rev_no") String rev_no){ // 관리자 리뷰 삭제
-        ResponseDTO res = manageService.manageReview(rev_no);
+    public ResponseDTO manageReview(@RequestBody Map<String, Object> reqMap){ // 관리자 리뷰 삭제
+        ResponseDTO res = manageService.manageReview(reqMap);
 
         return res;
     }

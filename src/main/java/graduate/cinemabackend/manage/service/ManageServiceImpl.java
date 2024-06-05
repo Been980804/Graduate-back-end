@@ -52,10 +52,10 @@ public class ManageServiceImpl implements ManageService {
 
     @Override
     @Transactional
-    public ResponseDTO deleteNoti(String noti_no) { // 공지사항 삭제
+    public ResponseDTO deleteNoti(Map<String, Object> reqMap) { // 공지사항 삭제
         ResponseDTO res = new ResponseDTO();
 
-        int deleteRow = manageMapper.deleteNoti(noti_no);
+        int deleteRow = manageMapper.deleteNoti(reqMap);
 
         if (deleteRow > 0) {
             res.setResCode(200);
@@ -69,10 +69,10 @@ public class ManageServiceImpl implements ManageService {
 
     @Override
     @Transactional
-    public ResponseDTO manageReview(String rev_no) { // 리뷰 삭제
+    public ResponseDTO manageReview(Map<String, Object> reqMap) { // 리뷰 삭제
         ResponseDTO res = new ResponseDTO();
 
-        int deleteRow = manageMapper.manageReview(rev_no);
+        int deleteRow = manageMapper.manageReview(reqMap);
 
         if (deleteRow > 0) {
             res.setResCode(200);

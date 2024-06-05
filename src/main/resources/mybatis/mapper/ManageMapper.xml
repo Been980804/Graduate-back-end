@@ -9,7 +9,7 @@
         UPDATE
             cs_qna
         SET
-            ans_mem_no = #{mem_no},
+            ans_mem_no = #{ans_mem_no},
             ans_content = #{ans_content},
             ans_reg_date = now(),
             ans_mod_date = now()
@@ -35,7 +35,7 @@
             )
     </insert>
     <!-- 공지사항 삭제 -->
-    <update id="deleteNoti" parameterType="String">
+    <update id="deleteNoti" parameterType="Map">
         UPDATE
             cs_noti
         SET
@@ -45,7 +45,7 @@
             noti_no = #{noti_no}
     </update>
     <!-- 리뷰 삭제 -->
-    <update id="manageReview" parameterType="String">
+    <update id="manageReview" parameterType="Map">
         UPDATE 
             review
         SET

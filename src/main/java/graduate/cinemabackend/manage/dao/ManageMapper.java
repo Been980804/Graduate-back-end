@@ -13,7 +13,7 @@ public interface ManageMapper {
     // 공지사항 쓰기
     int createNoti(Map<String, Object> reqMap);
     // 공지사항 삭제
-    int deleteNoti(String noti_no);
+    int deleteNoti(Map<String, Object> reqMap);
     // 리뷰 삭제
-    int manageReview(String rev_no);
+    int manageReview(Map<String, Object> reqMap);
 }

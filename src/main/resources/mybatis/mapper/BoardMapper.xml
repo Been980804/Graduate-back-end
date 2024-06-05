@@ -93,6 +93,6 @@
             qes_mod_date = now()
         WHERE
             qna_no = #{qna_no}
-            and qes_mem_no = #{mem_no}
+            and qes_mem_no = #{qes_mem_no}
    </update>
 </mapper>
