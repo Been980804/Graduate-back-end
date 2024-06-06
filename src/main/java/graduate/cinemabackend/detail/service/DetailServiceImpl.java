@@ -9,15 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import graduate.cinemabackend.common.dto.ResponseDTO;
 import graduate.cinemabackend.detail.dao.DetailMapper;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 
 @Service
 public class DetailServiceImpl implements DetailService {
 
     @Autowired
     DetailMapper detailMapper;
-    
+
     @Override
     @Transactional
     public ResponseDTO getDetailInfo(String mov_no) { // 영화 상세정보 가져오기
@@ -76,28 +74,19 @@ public class DetailServiceImpl implements DetailService {
 
     @Override
     @Transactional
-    public ResponseDTO deleteReview(Map<String, Object> reqMap, HttpServletRequest httpServletRequest) {
+    public ResponseDTO deleteReview(Map<String, Object> reqMap) {
         ResponseDTO res = new ResponseDTO();
 
-        HttpSession session = httpServletRequest.getSession(false);
-        if(session != null){
-            String mem_no = (String) session.getAttribute("mem_no");
-            
-            reqMap.put("mem_no", mem_no);
+        int deleteRow = detailMapper.deleteReview(reqMap);
 
-            int deleteRow = detailMapper.deleteReview(reqMap);
-
-            if(deleteRow > 0){
-                res.setResCode(200);
-                res.setResMsg("리뷰 삭제 성공");
-            } else{
-                res.setResCode(300);
-                res.setResMsg("리뷰 삭제 실패");
-            }
-        } else{
+        if (deleteRow > 0) {
+            res.setResCode(200);
+            res.setResMsg("리뷰 삭제 성공");
+        } else {
             res.setResCode(300);
-            res.setResMsg("로그인 후 이용해 주세요.");
+            res.setResMsg("리뷰 삭제 실패");
         }
+
         return res;
     }
 
