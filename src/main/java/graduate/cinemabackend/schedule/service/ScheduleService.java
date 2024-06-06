@@ -2,7 +2,6 @@ package graduate.cinemabackend.schedule.service;
 
 import java.util.Map;
 
-
 import org.springframework.stereotype.Service;
 
 import graduate.cinemabackend.common.dto.ResponseDTO;

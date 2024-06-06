@@ -5,7 +5,7 @@
 
 <mapper namespace="graduate.cinemabackend.board.dao.BoardMapper">
     <!-- 공지사항 목록 -->
-   <select id="notiList" resultType="Map">
+    <select id="notiList" resultType="Map">
         SELECT
             noti_no, mem.mem_name, noti_title, noti_cnt, date_format(noti.reg_date, '%Y-%m-%d %H:%i:%s') as reg_date
         FROM
@@ -16,9 +16,9 @@
             noti.use_flag = 'Y'
         ORDER BY
             reg_date DESC
-   </select>  
-   <!-- 공지사항 조회수 증가 -->
-   <update id="increaseCnt" parameterType="String">
+    </select>
+    <!-- 공지사항 조회수 증가 -->
+    <update id="increaseCnt" parameterType="String">
         UPDATE
             cs_noti
         SET
@@ -26,9 +26,9 @@
         WHERE
             use_flag = 'Y'
             and noti_no = #{noti_no}
-   </update>
-   <!-- 공지사항 상세보기 -->
-   <select id="detailNoti" parameterType="String" resultType="Map">
+    </update>
+    <!-- 공지사항 상세보기 -->
+    <select id="detailNoti" parameterType="String" resultType="Map">
         SELECT
             noti_no, noti_title, mem.mem_name, noti_content, noti_cnt, date_format(noti.reg_date, '%Y-%m-%d') as reg_date
         FROM
@@ -38,9 +38,9 @@
         WHERE
             noti.use_flag = 'Y'
             and noti_no = #{noti_no}
-   </select>
+    </select>
     <!-- 문의사항 목록 -->
-   <select id="qnaList" resultType="Map">
+    <select id="qnaList" resultType="Map">
         SELECT
             qna_no, mem.mem_name, qes_title, date_format(qes_reg_date, '%Y-%m-%d %H:%i:%s') as reg_date
         FROM
@@ -51,9 +51,9 @@
             qna.use_flag = 'Y'
         ORDER BY
             reg_date DESC
-   </select>
-   <!-- 문의사항 상세보기 -->
-   <select id="detailQna" parameterType="String" resultType="Map">
+    </select>
+    <!-- 문의사항 상세보기 -->
+    <select id="detailQna" parameterType="String" resultType="Map">
         SELECT
             qna_no, qm.mem_no as qes_mem_no, qm.mem_name as qes_mem_name, qes_title, qes_content, am.mem_no as ans_mem_no, am.mem_name as ans_mem_name, ans_content,
             date_format(qes_reg_date,'%Y-%m-%d %H:%i:%s') as qes_reg_date, date_format(ans_reg_date,'%Y-%m-%d %H:%i:%s') as ans_reg_date
@@ -66,9 +66,9 @@
         WHERE
             qna.use_flag = 'Y'
             and qna_no = #{qna_no}
-   </select>
-   <!-- 문의사항 등록 -->
-   <insert id="createQna" parameterType="Map">
+    </select>
+    <!-- 문의사항 등록 -->
+    <insert id="createQna" parameterType="Map">
         INSERT INTO
             cs_qna(
                 qes_mem_no,
@@ -83,9 +83,9 @@
                 now(),
                 now()
             )
-   </insert>
-   <!-- 문의사항 삭제 -->
-   <update id="deleteQna" parameterType="Map">
+    </insert>
+    <!-- 문의사항 삭제 -->
+    <update id="deleteQna" parameterType="Map">
         UPDATE
             cs_qna
         SET 
@@ -94,5 +94,5 @@
         WHERE
             qna_no = #{qna_no}
             and qes_mem_no = #{qes_mem_no}
-   </update>
+    </update>
 </mapper>

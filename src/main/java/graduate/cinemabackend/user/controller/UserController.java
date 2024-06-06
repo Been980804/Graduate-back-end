@@ -23,23 +23,23 @@ public class UserController {
     UserService userService;
 
     // 로그인
-    @PostMapping(value="/login")
+    @PostMapping(value = "/login")
     public ResponseDTO login(@RequestBody Map<String, String> reqMap, HttpServletRequest httpServletRequest) {
         ResponseDTO res = userService.login(reqMap, httpServletRequest);
-        
+
         return res;
     }
-    
+
     // 회원가입
-    @PostMapping(value="/signup")
+    @PostMapping(value = "/signup")
     public ResponseDTO signup(@RequestBody Map<String, Object> reqMap) {
         ResponseDTO res = userService.signup(reqMap);
 
         return res;
     }
-    
+
     // 아이디 중복체크
-    @GetMapping(value="/idCheck/{mem_id}")
+    @GetMapping(value = "/idCheck/{mem_id}")
     public ResponseDTO idCheck(@PathVariable("mem_id") String mem_id) {
         ResponseDTO res = userService.idCheck(mem_id);
 
@@ -64,35 +64,35 @@ public class UserController {
     }
 
     // 회원정보 조회
-    @GetMapping(value="/userInfo")
+    @GetMapping(value = "/userInfo")
     public ResponseDTO userInfo(HttpServletRequest httpServletRequest) {
         ResponseDTO res = userService.userInfo(httpServletRequest);
 
         return res;
     }
-    
+
     // 회원정보 수정
-    @PutMapping(value="/modifyUserInfo")
+    @PutMapping(value = "/modifyUserInfo")
     public ResponseDTO modifyUserInfo(@RequestBody Map<String, Object> reqMap, HttpServletRequest httpServletRequest) {
         ResponseDTO res = userService.modifyUserInfo(reqMap, httpServletRequest);
-        
+
         return res;
     }
-    
+
     // 회원탈퇴
-    @PostMapping(value="/deleteAccount")
+    @PostMapping(value = "/deleteAccount")
     public ResponseDTO postMethodName(HttpServletRequest httpServletRequest) {
         ResponseDTO res = userService.deleteAccount(httpServletRequest);
 
         return res;
     }
-    
+
     // 선호 영화 리스트 가져오기
-    @GetMapping(value="likeMovie")
+    @GetMapping(value = "likeMovie")
     public ResponseDTO likeMovie(HttpServletRequest httpServletRequest) {
         ResponseDTO res = userService.likeMovie(httpServletRequest);
 
         return res;
     }
-    
+
 }

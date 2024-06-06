@@ -18,29 +18,29 @@ public class ManageController {
     @Autowired
     ManageService manageService;
 
-    @PostMapping(value="/answerQna")
+    @PostMapping(value = "/answerQna")
     public ResponseDTO answerQna(@RequestBody Map<String, Object> reqMap) { // 문의사항 답변
         ResponseDTO res = manageService.answerQna(reqMap);
-                
+
         return res;
     }
 
-    @PostMapping(value="/createNoti")
+    @PostMapping(value = "/createNoti")
     public ResponseDTO createNoti(@RequestBody Map<String, Object> reqMap) { // 공지사항 쓰기
         ResponseDTO res = manageService.createNoti(reqMap);
-        
+
         return res;
     }
-    
-    @PostMapping(value="/deleteNoti")
+
+    @PostMapping(value = "/deleteNoti")
     public ResponseDTO postMethodName(@RequestBody Map<String, Object> reqMap) { // 공지사항 삭제
         ResponseDTO res = manageService.deleteNoti(reqMap);
 
         return res;
     }
-    
-    @PostMapping(value="/manageReview")
-    public ResponseDTO manageReview(@RequestBody Map<String, Object> reqMap){ // 관리자 리뷰 삭제
+
+    @PostMapping(value = "/manageReview")
+    public ResponseDTO manageReview(@RequestBody Map<String, Object> reqMap) { // 관리자 리뷰 삭제
         ResponseDTO res = manageService.manageReview(reqMap);
 
         return res;

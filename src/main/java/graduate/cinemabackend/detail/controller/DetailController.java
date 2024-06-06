@@ -16,47 +16,48 @@ import graduate.cinemabackend.detail.service.DetailService;
 @RestController
 @RequestMapping("/detail")
 public class DetailController {
-    
+
     @Autowired
     DetailService detailService;
 
     // 영화 상세정보 가져오기
-    @GetMapping(value="/getDetailInfo/{mov_no}")
+    @GetMapping(value = "/getDetailInfo/{mov_no}")
     public ResponseDTO getDetailInfo(@PathVariable("mov_no") String mov_no) {
         ResponseDTO res = detailService.getDetailInfo(mov_no);
 
         return res;
     }
-    
+
     // 영화 리뷰정보 가져오기
-    @GetMapping(value="/getReview/{mov_no}")
+    @GetMapping(value = "/getReview/{mov_no}")
     public ResponseDTO getReview(@PathVariable("mov_no") String mov_no) {
         ResponseDTO res = detailService.getReview(mov_no);
 
         return res;
     }
-    
+
     // 영화 리뷰작성
-    @PostMapping(value="/createReview")
+    @PostMapping(value = "/createReview")
     public ResponseDTO createReview(@RequestBody Map<String, Object> reqMap) { // mov_no, mem_no
-        ResponseDTO res= detailService.createReview(reqMap);
-        
+        ResponseDTO res = detailService.createReview(reqMap);
+
         return res;
     }
-    
+
     // 영화 리뷰 삭제
-    @PostMapping(value="/deleteReview")
+    @PostMapping(value = "/deleteReview")
     public ResponseDTO deleteReview(@RequestBody Map<String, Object> reqMap) {// rev_no, mov_no
         ResponseDTO res = detailService.deleteReview(reqMap);
 
-        return res;        
-    }
-        // 영화 좋아요
-    @PostMapping(value="/likeMovie")
-    public ResponseDTO likeMovie(@RequestBody Map<String, Object> reqMap) { // mov_no, mem_no
-        ResponseDTO res = detailService.likeMovie(reqMap);
-        
         return res;
     }
-    
+
+    // 영화 좋아요
+    @PostMapping(value = "/likeMovie")
+    public ResponseDTO likeMovie(@RequestBody Map<String, Object> reqMap) { // mov_no, mem_no
+        ResponseDTO res = detailService.likeMovie(reqMap);
+
+        return res;
+    }
+
 }

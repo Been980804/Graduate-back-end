@@ -11,32 +11,32 @@ import graduate.cinemabackend.main.service.MainService;
 @RestController
 @RequestMapping("/main")
 public class MainController {
-    
+
     @Autowired
     MainService mainService;
-    
+
     // mov_no, mov_posterURL 받아오기
-    @GetMapping(value="/posterURL")
+    @GetMapping(value = "/posterURL")
     public ResponseDTO getPosterURL() {
         ResponseDTO res = mainService.getPosterURL();
 
         return res;
     }
-    
-    // 현재상영중인 영화 
-    @GetMapping(value="/screening")
-    public ResponseDTO screening(){
+
+    // 현재상영중인 영화
+    @GetMapping(value = "/screening")
+    public ResponseDTO screening() {
         ResponseDTO res = mainService.screening();
 
         return res;
     }
 
     // 상영예정작
-    @GetMapping(value="/toBeScreened")
+    @GetMapping(value = "/toBeScreened")
     public ResponseDTO toBeScreened() {
         ResponseDTO res = mainService.toBeScreened();
 
         return res;
     }
-    
+
 }

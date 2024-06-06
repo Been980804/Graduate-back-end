@@ -19,28 +19,28 @@
         WHERE 
             m.mov_no = #{mov_no}
             and sch.sch_date = 
-                <choose>
-                    <when test="sch_date == null">
-                        current_date()              <!-- 날짜 선택이 안되었을 때 오늘 날짜로 -->
-                    </when>
-                    <otherwise>
+        <choose>
+            <when test="sch_date == null">
+                        current_date()                              <!-- 날짜 선택이 안되었을 때 오늘 날짜로 -->
+            </when>
+            <otherwise>
                         #{sch_date}
-                    </otherwise>
-                </choose>
+            </otherwise>
+        </choose>
             and th.th_region = 
-                <choose>
-                    <when test="th_region == null">
-                        '부평구'                    <!-- 지역 선택이 안되었을 때 기본값 부평구로 -->
-                    </when>
-                    <otherwise>
+        <choose>
+            <when test="th_region == null">
+                        '부평구'                                    <!-- 지역 선택이 안되었을 때 기본값 부평구로 -->
+            </when>
+            <otherwise>
                         #{th_region}
-                    </otherwise>
-                </choose>
+            </otherwise>
+        </choose>
             and sch.use_flag = 'Y'
             and th.use_flag = 'Y'
         ORDER BY
             th.th_brand asc,
-            <!-- 관 순서대로 -->
+                    <!-- 관 순서대로 -->
             CAST(SUBSTRING_INDEX(h.hall_name, '관', 1) AS UNSIGNED) ASC 
     </select>
 </mapper>

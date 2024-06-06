@@ -23,11 +23,11 @@ public class MainServiceImpl implements MainService {
 
         List<Map<String, Object>> posterURLList = mainMapper.getPosterURL();
 
-        if(!posterURLList.isEmpty()){
+        if (!posterURLList.isEmpty()) {
             res.setResCode(200);
             res.setResMsg("배너 가져오기 성공");
             res.setData("posterURLList", posterURLList);
-        }else{
+        } else {
             res.setResCode(300);
             res.setResMsg("배너 가져오기 실패");
         }
@@ -42,11 +42,11 @@ public class MainServiceImpl implements MainService {
 
         List<Map<String, Object>> screeningList = mainMapper.screening();
 
-        if(!screeningList.isEmpty()){
+        if (!screeningList.isEmpty()) {
             res.setResCode(200);
             res.setResMsg("현재상영중인 영화 조회 성공");
             res.setData("screeningList", screeningList);
-        } else{
+        } else {
             res.setResCode(300);
             res.setResMsg("현재상영중인 영화 조회 실패");
         }
@@ -60,11 +60,11 @@ public class MainServiceImpl implements MainService {
 
         List<Map<String, Object>> toBeScreenedList = mainMapper.toBeScreened();
 
-        if(!toBeScreenedList.isEmpty()){
+        if (!toBeScreenedList.isEmpty()) {
             res.setResCode(200);
             res.setResMsg("상영예정작 조회 성공");
             res.setData("toBeScreenedList", toBeScreenedList);
-        } else{
+        } else {
             res.setResCode(300);
             res.setResMsg("상영예정작 조회 실패");
         }

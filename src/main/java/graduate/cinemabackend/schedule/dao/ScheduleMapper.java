@@ -1,7 +1,7 @@
 package graduate.cinemabackend.schedule.dao;
 
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ScheduleMapper {
     // 영화 스케줄 가져오기
-    List<Map<String, Object>> compare(Map<String, Object> reqMap);    
+    List<Map<String, Object>> compare(Map<String, Object> reqMap);
 }

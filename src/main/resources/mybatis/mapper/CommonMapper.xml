@@ -13,7 +13,7 @@
             mov_title = #{mov_title}
             and use_flag = 'Y'
     </select>
-    
+
     <update id="updateMovie" parameterType="Map">
         UPDATE 
             movie
@@ -85,9 +85,9 @@
             movie
         WHERE
             use_flag = 'Y'
-            <if test="search != 'all'">
+        <if test="search != 'all'">
                 and mov_title like concat('%', #{search}, '%')
-            </if>
+        </if>
         ORDER BY
             mov_rank
     </select>

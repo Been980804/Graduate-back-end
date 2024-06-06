@@ -11,21 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 import graduate.cinemabackend.common.dto.ResponseDTO;
 import graduate.cinemabackend.schedule.service.ScheduleService;
 
-
-
 @RestController
 @RequestMapping("/schedule")
 public class ScheduleController {
-    
+
     @Autowired
     ScheduleService scheduleService;
-    
-    //영화 스케줄 비교
-    @PostMapping(value="/compare")
+
+    // 영화 스케줄 비교
+    @PostMapping(value = "/compare")
     public ResponseDTO compare(@RequestBody Map<String, Object> reqMap) {
         ResponseDTO res = scheduleService.compare(reqMap);
 
         return res;
     }
-    
+
 }

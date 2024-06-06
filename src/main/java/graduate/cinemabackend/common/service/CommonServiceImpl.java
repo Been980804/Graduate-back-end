@@ -100,7 +100,7 @@ public class CommonServiceImpl implements CommonService {
                         Elements directors = detailInfo.getElementsByTag("dd");
                         for (Element director : directors) {
                             String directorNm = director.getElementsByTag("a").text();
-                            movieMap.put("mov_director", directorNm);   // 감독명 구분을 위한 , 추가 
+                            movieMap.put("mov_director", directorNm); // 감독명 구분을 위한 , 추가
                             break;
                         }
 
@@ -173,12 +173,12 @@ public class CommonServiceImpl implements CommonService {
         ResponseDTO res = new ResponseDTO();
 
         List<Map<String, Object>> searchList = commonMapper.search(search);
-        
-        if(!searchList.isEmpty()){
+
+        if (!searchList.isEmpty()) {
             res.setResCode(200);
             res.setResMsg("검색 성공");
             res.setData("searchList", searchList);
-        } else{
+        } else {
             res.setResCode(300);
             res.setResMsg("검색 실패");
         }
@@ -191,14 +191,14 @@ public class CommonServiceImpl implements CommonService {
     @Transactional
     public ResponseDTO currentNoti() {
         ResponseDTO res = new ResponseDTO();
-        
+
         List<Map<String, Object>> notiList = commonMapper.currentNoti();
 
-        if(!notiList.isEmpty()){
+        if (!notiList.isEmpty()) {
             res.setResCode(200);
             res.setResMsg("footer 공지사항 목록 가져오기 성공");
             res.setData("notiList", notiList);
-        } else{
+        } else {
             res.setResCode(300);
             res.setResMsg("footer 공지사항 목록 가져오기 실패");
         }
@@ -211,14 +211,14 @@ public class CommonServiceImpl implements CommonService {
     @Transactional
     public ResponseDTO currentQna() {
         ResponseDTO res = new ResponseDTO();
-        
+
         List<Map<String, Object>> qnaList = commonMapper.currentQna();
 
-        if(!qnaList.isEmpty()){
+        if (!qnaList.isEmpty()) {
             res.setResCode(200);
             res.setResMsg("footer 문의사항 목록 가져오기 성공");
             res.setData("qnaList", qnaList);
-        } else{
+        } else {
             res.setResCode(300);
             res.setResMsg("footer 문의사항 목록 가져오기 실패");
         }

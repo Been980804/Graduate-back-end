@@ -10,10 +10,13 @@ import graduate.cinemabackend.common.dto.ResponseDTO;
 public interface ManageService {
     // 문의사항 답변
     ResponseDTO answerQna(Map<String, Object> reqMap);
+
     // 공지사항 쓰기
     ResponseDTO createNoti(Map<String, Object> reqMap);
+
     // 공지사항 삭제
     ResponseDTO deleteNoti(Map<String, Object> reqMap);
+
     // 리뷰 삭제
     ResponseDTO manageReview(Map<String, Object> reqMap);
 }
