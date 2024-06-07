@@ -51,7 +51,7 @@
       member
     SET
       mem_name = #{mem_name},
-      mem_id = #{mem_id},
+      mem_pwd = #{mem_pwd},
       mem_phone = #{mem_phone},
       mem_birth = #{mem_birth},
       mem_email = #{mem_email},
